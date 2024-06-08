@@ -2,5 +2,8 @@ package tn.esprit.crmassurance.entities;
 
 public enum EUserStatus {
     Active,
-    Inactive
+    Inactive,
+    Qualified,
+    Disqualified,
+    En_attente
 }
