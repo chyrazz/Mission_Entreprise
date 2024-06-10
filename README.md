@@ -14,5 +14,5 @@ Pour démarrer le serveur backend, naviguez dans le répertoire \`backend_SB\`
 ### Frontend
 
 Pour démarrer le serveur frontend, naviguez dans le répertoire \`frontend_Angular\` et exécutez :
-  npm install
-  ng serve
+- npm install
+- ng serve
