@@ -20,7 +20,9 @@ import { ContractComponent } from 'app/contract/contract.component';
 import { RequestComponent } from 'app/request/request.component';
 import { OpportunitiesComponent } from 'app/opportunities/opportunities.component';
 import { UsersComponent } from 'app/users/users.component';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   imports: [
@@ -34,6 +36,9 @@ import { UsersComponent } from 'app/users/users.component';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    MatTableModule,
+    MatDialogModule, 
+    MatPaginatorModule
   ],
   declarations: [
     DashboardComponent,
