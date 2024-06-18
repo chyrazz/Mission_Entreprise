@@ -6,6 +6,7 @@ import tn.esprit.crmassurance.entities.Contract;
 import tn.esprit.crmassurance.repositories.ContractRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -18,18 +19,17 @@ public class ContractServiceImpl implements IContractService {
 
 
     @Override
-    public List<Contract> getAllContracts() {
+    public List<Contract> getAllContract() {
         return contractRepository.findAll();
     }
 
     @Override
-    public Optional<Contract> getContractById(Long id) {
-        return contractRepository.findById(id);
-    }
+
+    public Contract getContractById(Long id) { return contractRepository.findById(id).orElse(null);}
 
     @Override
-    public Contract createContract(Contract contract) {
-        return contractRepository.save(contract);
+    public Contract createContract(Contract Newcontract) {
+        return contractRepository.save(Newcontract);
     }
 
     @Override
