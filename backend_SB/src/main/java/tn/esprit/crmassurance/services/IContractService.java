@@ -9,7 +9,7 @@ public interface IContractService {
 
 
 
-    public List<Contract> getAllContracts();
+    public List<Contract> getAllContract();
 
     public Contract getContractById(Long id);
 
