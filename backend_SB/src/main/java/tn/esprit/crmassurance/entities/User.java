@@ -19,42 +19,42 @@ public class User implements Serializable {
     private Long id;
 
     private String name;
-    private String LastName;
+    private String lastname;
+    private String adr;
     private String email;
     private String password;
     private String phoneNumber1;
     private String phoneNumber2;
-    private String Adress;
-    private Date InscripDate;
+    private Date creationdate;
 
     @Enumerated(EnumType.STRING)
     private EUserStatus status;
 
-    @ManyToOne
-    private Role role;
+    @Enumerated(EnumType.STRING)
+    private ERole role;
 
-    @OneToMany(mappedBy = "representant")
+    @OneToMany(mappedBy = "representant",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Opportunity> lisOPPAsRep;
 
-    @OneToMany(mappedBy = "lead")
+    @OneToMany(mappedBy = "lead",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Opportunity> lisOPPAsLead;
 
-    @OneToMany(mappedBy = "CreatedBy")
+    @OneToMany(mappedBy = "CreatedBy",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<CustomerRequest> listTicketsAsClient;
 
-    @OneToMany(mappedBy = "ResponsableTicket")
+    @OneToMany(mappedBy = "ResponsableTicket",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<CustomerRequest> listTicketsAsSupport;
 
-    @OneToMany(mappedBy = "repAct")
+    @OneToMany(mappedBy = "repAct",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Activity> ActivityAsRep;
 
-    @OneToMany(mappedBy = "lead")
+    @OneToMany(mappedBy = "lead",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Activity> ActivityAsLead;
 
-    @OneToMany(mappedBy = "representant")
+    @OneToMany(mappedBy = "representant", cascade = CascadeType.ALL)
     private List<Contract> ContratsAsRep;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Contract> ContratsAsClient;
 
 }

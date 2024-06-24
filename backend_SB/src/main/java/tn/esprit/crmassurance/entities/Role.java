@@ -12,14 +12,10 @@ import java.util.List;
 @Getter
 @Setter
 public class Role {
-    @Id
+ @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long RoleId;
-
-
     @Enumerated(EnumType.STRING)
     private ERole name;
 
-    @OneToMany(mappedBy = "role")
-    private List<User> listeUsers;
 }
