@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/Contracts")
 public class ContractController {
-
+/*
 
     @Autowired
     private ContractServiceImpl ContractService;
@@ -47,4 +47,6 @@ public class ContractController {
     {
         ContractService.DeleteContract(ct);
     }
+
+ */
 }
