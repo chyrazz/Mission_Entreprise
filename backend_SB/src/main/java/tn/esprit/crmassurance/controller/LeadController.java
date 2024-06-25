@@ -9,6 +9,7 @@ import tn.esprit.crmassurance.services.LeadServiceImpl;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/Lead")
 public class LeadController {
     @Autowired
