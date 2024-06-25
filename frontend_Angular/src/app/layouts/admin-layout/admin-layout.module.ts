@@ -5,8 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
-import { TableListComponent } from '../../table-list/table-list.component';
-import { NotificationsComponent } from '../../notifications/notifications.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatRippleModule} from '@angular/material/core';
@@ -23,12 +21,21 @@ import { UsersComponent } from 'app/users/users.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule} from '@angular/material/paginator';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatCardModule} from '@angular/material/card';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    MatMenuModule,
+    MatToolbarModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatRippleModule,
@@ -38,13 +45,16 @@ import { MatPaginatorModule} from '@angular/material/paginator';
     MatTooltipModule,
     MatTableModule,
     MatDialogModule, 
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatChipsModule,
+    MatBadgeModule,
+    MatSnackBarModule
   ],
   declarations: [
     DashboardComponent,
     UserProfileComponent,
-    TableListComponent,
-    NotificationsComponent,
     LeadComponent,
     ClientComponent,
     ActivityComponent,

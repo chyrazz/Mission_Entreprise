@@ -10,9 +10,9 @@ import java.util.Optional;
 
 
 @Service
-public class ContractServiceImpl implements IContractService {
+public class ContractServiceImpl{
 
-
+/*
 
     @Autowired
     public ContractRepository contractRepository;
@@ -42,4 +42,6 @@ public class ContractServiceImpl implements IContractService {
     public void deleteContract(Long id) {
         contractRepository.deleteById(id);
     }
+
+ */
 }
