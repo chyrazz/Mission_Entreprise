@@ -19,4 +19,6 @@ public interface IContractService {
 
     void deleteContract(Long id);
 
+    //test05
+
 }

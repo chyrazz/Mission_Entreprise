@@ -42,4 +42,6 @@ public class ContractServiceImpl implements IContractService {
     public void deleteContract(Long id) {
         contractRepository.deleteById(id);
     }
+
+    //test05
 }

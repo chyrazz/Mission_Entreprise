@@ -40,4 +40,5 @@ public class ContractController {
     {
         ContractService.deleteContract(id);
     }
+    //test05
 }
