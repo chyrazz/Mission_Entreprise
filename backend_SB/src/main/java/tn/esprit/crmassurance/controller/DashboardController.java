@@ -20,7 +20,7 @@ public class DashboardController {
         int totalContrats = dashboardService.getTotalContrats();
         return ResponseEntity.ok(totalContrats);
     }
-
+/*
     @GetMapping("/contrats-resilies")
     public ResponseEntity<Integer> getContratsResilies() {
         int contratsResilies = dashboardService.getContratsResilies();
@@ -38,7 +38,7 @@ public class DashboardController {
         int contratsCreatedByMonth = dashboardService.getContratsCreatedByMonth();
         return ResponseEntity.ok(contratsCreatedByMonth);
     }
-
+*/
     @GetMapping("/requests-in-progress")
     public ResponseEntity<Integer> getRequestInProgress() {
         int requestsInProgress = dashboardService.getRequestInProgress();
@@ -74,13 +74,13 @@ public class DashboardController {
         int ticketsHandled = dashboardService.getTicketsHandled();
         return ResponseEntity.ok(ticketsHandled);
     }
-
+/*
     @GetMapping("/contracts-handled-commercial")
     public ResponseEntity<Integer> getContractsHandledByCommercial() {
         int contractsHandledByCommercial = dashboardService.getContractsHandledByCommercial();
         return ResponseEntity.ok(contractsHandledByCommercial);
     }
-
+*/
     @GetMapping("/opportunities-handled")
     public ResponseEntity<Integer> getOpportunitiesHandled() {
         int opportunitiesHandled = dashboardService.getOpportunitiesHandled();

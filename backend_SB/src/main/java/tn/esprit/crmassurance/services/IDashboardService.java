@@ -4,9 +4,9 @@ public interface IDashboardService {
 
     //Dashboard Contrat
     public int getTotalContrats();
-    public int getContratsResilies();
-    public int getContratsRenouveles();
-    public int getContratsCreatedByMonth();
+    //public int getContratsResilies();
+    //public int getContratsRenouveles();
+   // public int getContratsCreatedByMonth();
 
     //Dashboard Lead+Client
     //Add boolean attribute in order to implement this method
@@ -23,7 +23,7 @@ public interface IDashboardService {
 
     //Dashboard Performance
     public int getTicketsHandled();
-    public int getContractsHandledByCommercial();
+   // public int getContractsHandledByCommercial();
     public int getOpportunitiesHandled();
 
 }

@@ -25,7 +25,7 @@ public class DashboardServiceImp implements IDashboardService{
     public int getTotalContrats() {
         return contractRepository.findAll().size();
     }
-
+/*
     @Override
     public int getContratsResilies() {
         LocalDate startDate = LocalDate.of(LocalDate.now().getYear(), 1, 1);
@@ -49,7 +49,7 @@ public class DashboardServiceImp implements IDashboardService{
         List<Contract> contracts = contractRepository.findByStartDateBetween(java.sql.Date.valueOf(startDate), java.sql.Date.valueOf(endDate));
         return contracts.size();
     }
-
+*/
 
     @Override
     public int getRequestInProgress() {
@@ -86,13 +86,13 @@ public class DashboardServiceImp implements IDashboardService{
         List<CustomerRequest> ticketsHandled = customerRequestRepository.findByTypeIn(Arrays.asList(ETypeRequest.Claim, ETypeRequest.Incident));
         return ticketsHandled.size();
     }
-
+/*
     @Override
     public int getContractsHandledByCommercial() {
         List<Contract> contractsHandled = contractRepository.findByRepresentantCommercial();
         return contractsHandled.size();
     }
-
+*/
     @Override
     public int getOpportunitiesHandled() {
         List<Opportunity> opportunitiesHandled = opporunityRepository.findAll();
