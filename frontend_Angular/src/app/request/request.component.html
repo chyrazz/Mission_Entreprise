@@ -1,5 +1,41 @@
-<div class="main-content">
-    <div class="container-fluid">
-        <div class="row">
-<p>request works!</p>
-        </div></div></div>
+<div class="container">
+    <div class="button-group">
+        <button type="button" class="btn btn-info" routerLink="/add-request">Add New Request</button>
+    </div>
+    <div class="card">
+        <div class="card-header card-header-info" >
+            <h4 class="card-title">Requests List</h4>
+            <p class="card-category">Request</p>
+        </div>
+        <div class="card-content table-responsive table-full-width">
+            <table class="table">
+                <thead class="text-info">
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Criticity</th>
+                    <th>Description</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Request 1</td>
+                        <td>Information</td>
+                        <td>Low</td>
+                        <td class="text-info">This is Request 1</td>
+                    </tr>
+                    <tr>
+                        <td>Request 2</td>
+                        <td>Claim</td>
+                        <td>Medium</td>
+                        <td class="text-info">This is Request 2</td>
+                    </tr>
+                    <tr>
+                        <td>Request 3</td>
+                        <td>Incident</td>
+                        <td>High</td>
+                        <td class="text-info">This is Request 3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
