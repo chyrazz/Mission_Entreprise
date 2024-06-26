@@ -15,8 +15,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon'; 
+import {DataTablesModule} from 'angular-datatables';
 import { SignINComponent } from './sign-in/sign-in.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 @NgModule({
   imports: [
@@ -35,6 +38,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSelectModule,
     MatTooltipModule,
     MatDialogModule,
+    MatIconModule ,
+    DataTablesModule,
     MatSnackBarModule
   ],
   declarations: [

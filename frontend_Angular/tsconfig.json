@@ -10,6 +10,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es2020",
+    "types": ["jquery", "datatables.net"],
     "lib": [
       "es2020",
       "dom"
@@ -19,3 +20,4 @@
     ],
   }
 }
+
