@@ -27,6 +27,12 @@ public class User implements Serializable {
     private String phoneNumber2;
     private Date creationdate;
 
+    @OneToMany(mappedBy ="userCreateur" )
+    private List<User> usercrees;
+
+    @ManyToOne
+    private User userCreateur;
+
     @Enumerated(EnumType.STRING)
     private EUserStatus status;
 
