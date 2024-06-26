@@ -4,10 +4,12 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { SignINComponent } from './sign-in/sign-in.component';
 
 const routes: Routes =[
+  { path: '', component: SignINComponent },
   {
-    path: '',
+    path: 'dashboard',
     redirectTo: 'dashboard',
     pathMatch: 'full',
   }, {
@@ -18,6 +20,7 @@ const routes: Routes =[
       loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
     }]
   }
+
 ];
 
 @NgModule({

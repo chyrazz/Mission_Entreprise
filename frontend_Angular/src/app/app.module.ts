@@ -17,6 +17,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon'; 
 import {DataTablesModule} from 'angular-datatables';
+import { SignINComponent } from './sign-in/sign-in.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 @NgModule({
   imports: [
@@ -36,13 +39,15 @@ import {DataTablesModule} from 'angular-datatables';
     MatTooltipModule,
     MatDialogModule,
     MatIconModule ,
-    DataTablesModule
+    DataTablesModule,
+    MatSnackBarModule
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    SignINComponent
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,]
 })
 export class AppModule { }
