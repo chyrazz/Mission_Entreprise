@@ -10,7 +10,7 @@ import java.util.Optional;
 
 
 @Service
-public class ContractServiceImpl{
+public class ContractServiceImpl implements IContractService{
 
 
     @Autowired
