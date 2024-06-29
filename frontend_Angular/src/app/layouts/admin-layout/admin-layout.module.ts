@@ -61,7 +61,7 @@ import {MatMenuModule} from '@angular/material/menu';
     ContractComponent,
     RequestComponent,
     UsersComponent,
-    OpportunitiesComponent
+    OpportunitiesComponent,
   ]
 })
 

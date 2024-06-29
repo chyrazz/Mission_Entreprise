@@ -20,3 +20,11 @@
     color: white; 
     }
 }
+
+.button-group button {
+    margin-right: 8px; // Adds space to the right of each button
+  
+    &:last-child {
+      margin-right: 0; // Removes the margin for the last button to avoid extra space at the end
+    }
+  }

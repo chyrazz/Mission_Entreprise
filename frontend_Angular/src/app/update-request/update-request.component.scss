@@ -12,16 +12,16 @@
 
 .form-group {
     .form-control {
-      border: none; // Removes the border
+      border: none; 
   
       &:focus {
-        box-shadow: none; // Optional: Removes the box-shadow on focus
-        outline: none; // Optional: Removes the outline on focus
+        box-shadow: none; 
+        outline: none; 
       }
     }
   }
 
-  .btn-primary {
+  .btn-success {
     i.fa-plus {
     margin-right: 5px; 
     color: white; 
