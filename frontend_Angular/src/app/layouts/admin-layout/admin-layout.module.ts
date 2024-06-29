@@ -50,7 +50,7 @@ import {MatMenuModule} from '@angular/material/menu';
     MatCardModule,
     MatChipsModule,
     MatBadgeModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
   declarations: [
     DashboardComponent,

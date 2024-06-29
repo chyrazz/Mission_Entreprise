@@ -1,0 +1,26 @@
+.form-group {
+    .form-control {
+      border: none; // Removes the border
+  
+      &:focus {
+        box-shadow: none; // Optional: Removes the box-shadow on focus
+        outline: none; // Optional: Removes the outline on focus
+      }
+    }
+  }
+
+  .btn-primary {
+    i.fa-plus {
+    margin-right: 5px; 
+    color: white; 
+    font-size: 0.85em;
+    }
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; // Use the full height of the viewport
+    padding-top: 0; // Override previous padding-top if not needed
+}
