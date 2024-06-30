@@ -75,7 +75,7 @@ import { LeadDetailsComponent } from 'app/lead-details/lead-details.component';
   ],
   providers: [CsvExportService,NativeDateAdapter],
 
-
+})
 export class AdminLayoutModule {}
 
 
