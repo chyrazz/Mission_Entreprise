@@ -35,5 +35,7 @@ public class Contract implements Serializable {
     @ManyToOne
     @JoinColumn(name = "representant_id", nullable = false)
     private User representant;
+
+    //test05
 }
 

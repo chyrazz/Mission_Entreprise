@@ -16,4 +16,7 @@ public interface ContractRepository extends JpaRepository<Contract,Long> {
 
     @Query("SELECT c FROM Contract c WHERE c.representant.role.name = 'Commerciale'")
     List<Contract> findByRepresentantCommercial();
+
+
+    //test05
 }
