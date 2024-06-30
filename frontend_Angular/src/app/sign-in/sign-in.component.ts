@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
@@ -7,14 +8,29 @@ import { Router } from '@angular/router';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SignINComponent {
+export class SignINComponent  {
+
+  loginForm: FormGroup;
+  loading = false;
+  submitted = false;
+  returnUrl: string;
+
   
-  constructor(protected router: Router)
-  {
+  constructor(protected router: Router,private formBuilder: FormBuilder,)
+  { this.loginForm = this.formBuilder.group({
+    username: ['', Validators.required],
+    password: ['', Validators.required]
+});
 
   }
 
+
+  // convenience getter for easy access to form fields
+  get f() { return this.loginForm.controls; }
+
+
   home(){ 
+    this.loading = true;
     this.router.navigate(['/dashboard']);
   }
 }

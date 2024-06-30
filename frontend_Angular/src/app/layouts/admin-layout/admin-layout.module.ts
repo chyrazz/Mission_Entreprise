@@ -7,7 +7,7 @@ import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
-import {MatRippleModule} from '@angular/material/core';
+import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
@@ -28,6 +28,11 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
+import { CsvExportService } from 'app/services/CsvExportService';
+import { AddActivityComponent } from 'app/add-activity/add-activity.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {NativeDateAdapter} from '@angular/material/core';
+import { LeadDetailsComponent } from 'app/lead-details/lead-details.component';
 
 @NgModule({
   imports: [
@@ -40,6 +45,7 @@ import {MatMenuModule} from '@angular/material/menu';
     MatButtonModule,
     MatRippleModule,
     MatFormFieldModule,
+    MatNativeDateModule,
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
@@ -51,6 +57,7 @@ import {MatMenuModule} from '@angular/material/menu';
     MatChipsModule,
     MatBadgeModule,
     MatSnackBarModule,
+    MatDatepickerModule
   ],
   declarations: [
     DashboardComponent,
@@ -61,8 +68,14 @@ import {MatMenuModule} from '@angular/material/menu';
     ContractComponent,
     RequestComponent,
     UsersComponent,
+    LeadDetailsComponent,
     OpportunitiesComponent,
-  ]
-})
+    AddActivityComponent,
+     OpportunitiesComponent,
+  ],
+  providers: [CsvExportService,NativeDateAdapter],
+
 
 export class AdminLayoutModule {}
+
+

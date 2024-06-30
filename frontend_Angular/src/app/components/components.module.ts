@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { AddActivityComponent } from 'app/add-activity/add-activity.component';
 
 @NgModule({
   imports: [

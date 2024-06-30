@@ -15,7 +15,9 @@ export const ROUTES: RouteInfo[] = [
     { path: '/activity', title: 'activities',  icon:'attach_file', class: '' },
     { path: '/opportunities', title: 'opportunities',  icon:'grading', class: '' },
     { path: '/contract', title: 'contracts',  icon:'content_paste', class: '' },
-    { path: '/request', title: 'requests',  icon:'support_agent', class: '' }
+    { path: '/request', title: 'requests',  icon:'support_agent', class: '' },
+  
+
 ];
 
 @Component({
