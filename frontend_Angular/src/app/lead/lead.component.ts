@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ERole } from 'app/model/ERole';
 import { EUserStatus } from 'app/model/EUserStatus';
 import { User } from 'app/model/User';
+import { CsvExportService } from 'app/services/CsvExportService';
 import { leadService } from 'app/services/leadService';
 import { table } from 'console';
 import { now } from 'moment';
@@ -73,22 +74,15 @@ export class LeadComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   
-  LeadForm=this.formBuilder.group({
-    firstname: new FormControl("", [Validators.required]),
-    lastname: new FormControl("", [Validators.required]),
-    adresse: new FormControl("", [Validators.required]),
-    phone1: new FormControl("", [Validators.required, Validators.pattern("[2,5,9]{1}[0-9]{7}")]),
-    phone2: new FormControl("", [Validators.pattern("[2,5,9]{1}[0-9]{7}")]),
-    mail: new FormControl("", [Validators.required, Validators.email]),
-    datecreate:new FormControl(new Date),
-    status:new FormControl("En attente")
-  });
-messageNotif: string;
-statusNotif!:string;
 
-  constructor(public snackBar: MatSnackBar,public dialog: MatDialog, private formBuilder: FormBuilder,private leadServices: leadService, private http: HttpClient) {
+
+  constructor(public snackBar: MatSnackBar,public dialog: MatDialog, private formBuilder: FormBuilder,private leadServices: leadService, private http: HttpClient,private csvExportService: CsvExportService) {
     this.getAllProducts();
     this.dataSource = new MatTableDataSource();
+  }
+
+  exportData() {
+    this.csvExportService.exportToCsv('data.csv', this.dataSource);
   }
 
   ngAfterViewInit() {
@@ -110,10 +104,10 @@ statusNotif!:string;
   }
 
   selectedRow(row) {
-    this.LeadForm.disable();
+    //this.LeadForm.disable();
     this.id = row.id|0;
     this.Act=true;
-    this.LeadForm.setValue({firstname:row.name,
+   /* this.LeadForm.setValue({firstname:row.name,
       lastname:row.lastname,
       adresse:row.adr,
       phone1:row.phoneNumber1,
@@ -121,17 +115,15 @@ statusNotif!:string;
       phone2:row.phoneNumber2,
       datecreate:row.creationdate,
       status:row.status
-    });
+    });*/
   }
 
+  
   EditUser(id: number) {
+    /*
     if(id!=0){
-      this.LeadForm.controls['adresse'].enable();
-      this.LeadForm.controls['phone1'].enable();
-      this.LeadForm.controls['phone2'].enable();
-      this.LeadForm.controls['status'].enable();
-      this.LeadForm.controls['mail'].enable();
-
+    //  this.LeadForm.enable();
+ 
       this.adduserBtn=false;
       this.ActionEnabled=false;
       this.SaveEnabled=true;
@@ -162,15 +154,17 @@ statusNotif!:string;
       this.LeadForm.reset();
       this.adduserBtn=true;
       this.id=0;
+      */
     }
    
    
     save(LeadForm){
+/*
 
-      
       if(this.adduserBtn){
         if(this.LeadForm.valid){
         const newUser = {
+          
           "name": LeadForm.value.firstname,
           "lastname": LeadForm.value.lastname,
           "adr": LeadForm.value.adresse,
@@ -223,7 +217,7 @@ statusNotif!:string;
      
     
   
-    
+    */
     }
 
 
@@ -232,6 +226,7 @@ statusNotif!:string;
     }
 
   applyFilter(event: Event) {
+    this. clearFilters()
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -240,6 +235,22 @@ statusNotif!:string;
     }
   }
 
+
+
+  filtreStatus(filterValue: string, column: string) {
+    this.dataSource.filterPredicate = (data, filter) => {
+      const dataStr = data[column] && data[column].toString().toLowerCase();
+      return dataStr.indexOf(filter.toLowerCase()) !== -1;
+    };
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  clearFilters(){
+    this.dataSource.filter = '';  
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(this.dialogContent);

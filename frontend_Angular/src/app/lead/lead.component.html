@@ -1,169 +1,15 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
-
-           
-
-            <div class="col-lg-12 col-md-12">
-            <div class="alert alert-{{statusNotif}}" *ngIf="show==true" >
-              <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="close()">
-                  <i class="material-icons">close</i>
-              </button>
-              <span>{{messageNotif}}</span>
-          </div>
-            </div>
-
-            <div id="form" class="col-md-4">
-              <form [formGroup]="LeadForm" class="example-form">
-                <div class="card">
-                  
-                    <div class="card-body">
-
-                      <h4 class="card-title ">Lead Details : </h4>
-
-                        <hr>
-                            <mat-form-field class="example-full-width">
-                              <mat-label>Code Lead</mat-label>
-                              <input matInput disabled [value]="id">
-                            </mat-form-field>
-                          
-                            <table class="example-full-width" cellspacing="0"><tr>
-                              <td><mat-form-field >
-                                <mat-label>First name</mat-label>
-                                <input matInput  formControlName="firstname">
-                                <mat-error *ngIf="this.LeadForm.controls['firstname'].hasError('required')">First name is required </mat-error>
-                              </mat-form-field>
-                             
-                            </td>
-                              <td><mat-form-field >
-                                <mat-label>Last Name</mat-label>
-                                <input matInput formControlName="lastname">
-                                <mat-error *ngIf="this.LeadForm.controls['lastname'].hasError('required')">Last name is required </mat-error>
-                              </mat-form-field></td>
-                            </tr></table>
-                          
-                            <p>
-                              <mat-form-field class="example-full-width">
-                                <mat-label>Address</mat-label>
-                                <textarea matInput formControlName="adresse"></textarea>
-                                <mat-error *ngIf="this.LeadForm.controls['adresse'].hasError('required')">Adress is required </mat-error>
-                              </mat-form-field>
-
-                             
-                            </p>
-                          
-                            <table class="example-full-width" cellspacing="0"><tr>
-                              <td><mat-form-field class="example-full-width">
-                                <mat-label>Phone Number 1</mat-label>
-                                <input matInput  formControlName="phone1">
-                                <mat-error *ngIf="this.LeadForm.controls['phone1'].hasError('required')">Phone number is required </mat-error>
-                                <mat-error *ngIf="this.LeadForm.controls['phone1'].errors?.pattern">Invalid email format</mat-error>
-
-                              </mat-form-field></td>
-
-                              <td><mat-form-field class="example-full-width">
-                                <mat-label>Phone Number 2</mat-label>
-                                <input matInput formControlName="phone2">
-                                <mat-error *ngIf="this.LeadForm.controls['phone2'].errors?.pattern">Invalid email format</mat-error>
-                              </mat-form-field></td>
-                              
-                            </tr>
-                            <tr>
-                              <td>
-                                <mat-form-field class="example-full-width">
-                                  <mat-label>Email</mat-label>
-                                  <input matInput  formControlName="mail">
-                                  <mat-error *ngIf="this.LeadForm.controls['mail'].hasError('required')">Email is required </mat-error>
-                                  <mat-error *ngIf="this.LeadForm.controls['mail'].hasError('email')">Invalid email format </mat-error>
-                                  
-                                </mat-form-field>
-                              </td>
-
-                              <td>
-                                <mat-form-field class="example-full-width">
-                                  <mat-label>Created on</mat-label>
-                                  <input matInput formControlName="datecreate" disabled >
-                                </mat-form-field>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td colspan="2">
-                              <mat-form-field>
-                                <mat-select [(ngModel)]="selectedValue" formControlName="status" placeholder="Change the Status of a lead!">
-                                    <mat-option value="En_attente">En attente</mat-option>
-                                    <mat-option value="Qualified">Qualified</mat-option>
-                                    <mat-option value="Disqualified">Disqualified</mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                            </td>
-                            </tr>
-                          </table>
-
-                            <div class="col-lg-12" id="icons">
-                              <div class="row"  *ngIf="Act==true">
-                                <div class="col-md-6">
-                                  <button mat-raised-button color="primary" matBadge="8" matBadgePosition="before" matBadgeColor="accent">
-                                    Activities
-                                    <i class="material-icons">arrow_forward</i>
-                                  </button>
-                                  </div>
-              
-                                  <div class="col-md-6">
-                                    <button mat-raised-button color="primary" matBadge="8" matBadgePosition="before" matBadgeColor="accent">
-                                      Opportunities
-                                      <i class="material-icons">arrow_forward</i>
-                                    </button>
-                                    </div>
-              
-
-                              </div>
-                                <div class="row"  *ngIf="ActionEnabled==true">
-                            <div class="col-md-4">
-                                <a class="nav-link"  (click)="addUser()">
-                                 <i class="material-icons">person_add</i>
-                                 <p>Add new Lead</p>
-                                </a>
-                           </div>
-                           <div class="col-md-8">
-                               <a class="nav-link" (click)="EditUser(id)">
-                                   <i class="material-icons">person_add</i>
-                                   <p>Edit Lead properties</p>
-                               </a>
-                           </div>
-                                </div></div>
-                         
-                          
-                          <div class="col-lg-12" id="icons" *ngIf="SaveEnabled==true">
-                            <div class="row">
-                        <div class="col-md-4">
-                            <a class="nav-link" (click)="save(LeadForm)">
-                              <i class="material-icons">save</i>
-                             <p>Save</p>
-                            </a>
-                       </div>
-                       <div class="col-md-8">
-                           <a class="nav-link" (click)="cancel(id)">
-                            <i class="material-icons">cancel</i>
-                               <p>Cancel</p>
-                           </a>
-                       </div>
-                            </div></div>
-
-                         
-                          
-                    </div>
-                </div>
-              </form>
-            </div>
-
-            <div class="col-md-8">
+          <button id="act" mat-button routerLink="/detail-lead">+ Lead</button>
+            <div class="col-md-12">
                 <div class="card">
                   <div class="input-container2">
                     <div><h4 >List Of Leads</h4></div>
                     <button id="act"  [matMenuTriggerFor]="menu2">Actions <i class="material-icons">keyboard_arrow_down</i></button>
                            <mat-menu #menu2="matMenu">
                             <button mat-menu-item id="btn" (click)="openDialog()"><i class="material-icons">publish</i>Import</button>
-                            <button mat-menu-item id="btn"><i class="material-icons">download</i>Export</button>
+                            <button mat-menu-item id="btn"><i class="material-icons" (click)="exportData()">download</i>Export</button>
                           </mat-menu>
                         </div>
                         
@@ -176,11 +22,11 @@
                           </mat-form-field>
                           
                           <button id="menu" mat-button [matMenuTriggerFor]="menu"><i class="material-icons">filter_alt</i></button>
-                           <mat-menu #menu="matMenu">
-                            <button mat-menu-item>All</button>
-                            <button mat-menu-item>Pending</button>
-                            <button mat-menu-item>Qualified</button>
-                            <button mat-menu-item>Disqualified</button>
+                           <mat-menu #menu="matMenu" >
+                            <button mat-menu-item (click)=" clearFilters()">All</button>
+                            <button mat-menu-item (click)="filtreStatus('En_attente','status')">Pending</button>
+                            <button mat-menu-item (click)="filtreStatus('Qualified','status')">Qualified</button>
+                            <button mat-menu-item (click)="filtreStatus('Disqualified','status')">Disqualified</button>
                           </mat-menu>
                          </div>
 

@@ -10,6 +10,7 @@ import tn.esprit.crmassurance.services.LeadServiceImpl;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/Activity")
 public class ActivityController {
     @Autowired

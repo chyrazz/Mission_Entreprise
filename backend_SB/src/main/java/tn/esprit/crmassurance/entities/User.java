@@ -51,12 +51,6 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "ResponsableTicket",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<CustomerRequest> listTicketsAsSupport;
 
-    @OneToMany(mappedBy = "repAct",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Activity> ActivityAsRep;
-
-    @OneToMany(mappedBy = "lead",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Activity> ActivityAsLead;
-
     @OneToMany(mappedBy = "representant", cascade = CascadeType.ALL)
     private List<Contract> ContratsAsRep;
 

@@ -8,6 +8,7 @@ import tn.esprit.crmassurance.services.CustomerRequestServiceImpl;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/Request")
 public class CustomerRequestController {
     @Autowired
