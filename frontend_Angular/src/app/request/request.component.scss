@@ -1,80 +1,31 @@
-.tr:hover {
-  cursor: pointer;
-  background-color: #f5f5f5;
-  transition: background-color 0.3s ease;
+
+.container {
+    padding-top: 100px;
 }
 
-a {
-  cursor: pointer;
-  color: #337ab7;
-  text-decoration: none;
-  transition: color 0.3s ease;
-
-  &:hover {
-      color: darken(#337ab7, 10%);
-  }
+.button-group {
+    margin-bottom: 20px;
+    text-align: right;
 }
 
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-  margin-right: auto;  
-  margin-top: 100px;  
-  margin-left: 50px;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-family: 'Roboto', sans-serif;
+.btn-info {
+    i.fa-plus {
+    margin-right: 5px; 
+    color: white; 
+    }
 }
 
-.example-full-width {
-  width: 100%;
-  margin-bottom: 20px;
+.btn-primary {
+    i.fa-star {
+    margin-right: 9px; 
+    color: white; 
+    }
 }
 
-td {
-  padding-right: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #ddd;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.example-half-width {
-  width: 48%;
-  box-sizing: border-box;
-}
-
-.button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.star-rating {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-
-  button {
-    margin: 0 5px;
-
-    // Style for the star icon
-    mat-icon {
-      font-size: 30px;
-      line-height: 30px;
+.button-group button {
+    margin-right: 8px; // Adds space to the right of each button
+  
+    &:last-child {
+      margin-right: 0; // Removes the margin for the last button to avoid extra space at the end
     }
   }
-}
