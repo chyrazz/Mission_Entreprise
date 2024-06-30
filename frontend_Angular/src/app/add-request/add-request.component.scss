@@ -1,0 +1,31 @@
+.main-content {
+  margin-top: 200px; 
+}
+
+
+.card {
+  height: 380px; 
+  width: 600px; 
+  margin: auto;
+  display: block;
+}
+
+.form-group {
+    .form-control {
+      border: none; // Removes the border
+  
+      &:focus {
+        box-shadow: none; // Optional: Removes the box-shadow on focus
+        outline: none; // Optional: Removes the outline on focus
+      }
+    }
+  }
+
+  .btn-primary {
+    i.fa-plus {
+    margin-right: 5px; 
+    color: white; 
+    font-size: 0.85em;
+    }
+}
+

@@ -11,10 +11,14 @@ import { RequestComponent } from 'app/request/request.component';
 import { UsersComponent } from 'app/users/users.component';
 import { AddActivityComponent } from 'app/add-activity/add-activity.component';
 import { LeadDetailsComponent } from 'app/lead-details/lead-details.component';
+import { AddRequestComponent } from 'app/add-request/add-request.component';
+import { UpdateRequestComponent } from 'app/update-request/update-request.component';
+import { RateRequestComponent } from 'app/rate-request/rate-request.component';
+
 
 
 export const AdminLayoutRoutes: Routes = [
-  
+
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'lead',  component: LeadComponent },
@@ -26,4 +30,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'opportunities',  component: OpportunitiesComponent },
     { path: 'add-activity',  component: AddActivityComponent },
     { path: 'detail-lead',  component: LeadDetailsComponent },
+    { path: 'add-request',  component: AddRequestComponent },
+    { path: 'update-request',  component: UpdateRequestComponent },
+    { path: 'rate-request',  component: RateRequestComponent }
+
 ];

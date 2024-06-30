@@ -70,10 +70,11 @@ import { LeadDetailsComponent } from 'app/lead-details/lead-details.component';
     UsersComponent,
     LeadDetailsComponent,
     OpportunitiesComponent,
-    AddActivityComponent
+    AddActivityComponent,
+     OpportunitiesComponent,
   ],
   providers: [CsvExportService,NativeDateAdapter],
-})
+
 
 export class AdminLayoutModule {}
 

@@ -1,0 +1,60 @@
+
+
+<div class="container">
+    <div class="button-group">
+        <button type="button" class="btn btn-primary" routerLink="/add-request"><i class="fa fa-plus"></i> Add Request</button>
+        <button type="button" class="btn btn-success" routerLink="/rate-request"><i class="fa fa-star"></i> Rate Service</button>
+    </div>
+    <div class="card">
+        <div class="card-header card-header-info" >
+            <h4 class="card-title">Requests List</h4>
+            <p class="card-category">Request</p>
+        </div>
+        <div class="card-content table-responsive table-full-width">
+            <table class="table">
+                <thead class="text-info">
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Criticity</th>
+                    <th>Status</th>
+                    <th>Description</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Request 1</td>
+                        <td>Information</td>
+                        <td>Low</td>
+                        <td>Open</td>
+                        <td class="text-info">This is Request 1</td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-sm" routerLink="/update-request"><i class="fa fa-edit"></i> Update</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Request 2</td>
+                        <td>Claim</td>
+                        <td>Medium</td>
+                        <td>In Progress</td>
+                        <td class="text-info">This is Request 2</td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-sm" routerLink="/update-request"><i class="fa fa-edit"></i> Update</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Request 3</td>
+                        <td>Incident</td>
+                        <td>High</td>
+                        <td>Done</td>
+                        <td class="text-info">This is Request 3</td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-sm" routerLink="/update-request"><i class="fa fa-edit"></i> Update</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
