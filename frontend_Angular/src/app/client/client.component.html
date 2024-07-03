@@ -2,20 +2,27 @@
 <div class="main-content">
   <div class="container-fluid">
       <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="input-container2">
-              <div><h4 >List Of Clients</h4></div>                
-              <div class="card-body">
-               
-                   <div class="input-container">
-                    <mat-form-field>
-                      <mat-label>Search</mat-label>
-                      <input id="search" matInput (keyup)="applyFilter($event)" placeholder="Ex. Lead" #input><i matSuffix class="material-icons">search</i>
-                    </mat-form-field>
-                   </div>
-                   <button mat-button  id="btn"><i class="material-icons" (click)="exportData()">download</i>Export</button>
+        <div class="input-container2">
+        <button id="act" mat-button routerLink="/detail-lead">+ Client</button>
+        <div class="input-container">
+          <mat-form-field>
+            <mat-label>Search</mat-label>
+            <input id="search" matInput (keyup)="applyFilter($event)" placeholder="Ex. Lead" #input><i matSuffix class="material-icons">search</i>
+          </mat-form-field>
+         </div>
 
+        <button mat-button (click)="exportData()"  id="btn"><i class="material-icons" >download</i>Export</button>
+        
+      </div>
+        <div class="card">
+       
+          <div><h4 >List Of Clients</h4></div>
+         
+              
+                <div class="card-body">         
+             
+               
+                  
 <div class="table-responsive">   
                       
 

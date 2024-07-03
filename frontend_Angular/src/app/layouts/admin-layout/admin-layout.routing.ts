@@ -30,6 +30,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'opportunities',  component: OpportunitiesComponent },
     { path: 'add-activity',  component: AddActivityComponent },
     { path: 'detail-lead',  component: LeadDetailsComponent },
+    { path: 'detail-lead/:id', component: LeadDetailsComponent },
     { path: 'add-request',  component: AddRequestComponent },
     { path: 'update-request',  component: UpdateRequestComponent },
     { path: 'rate-request',  component: RateRequestComponent }

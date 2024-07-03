@@ -30,7 +30,7 @@ public class CustomerRequest implements Serializable {
     private Date UpdateDate;
 
     @ManyToOne
-    @JoinColumn(name = "representant_id", nullable = false)
+    @JoinColumn(name = "representant_id", nullable = true)
     private User ResponsableTicket;
 
     @ManyToOne

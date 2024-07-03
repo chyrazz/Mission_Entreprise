@@ -1,4 +1,6 @@
-
+table{
+    width: 100%;
+}
 .container {
     padding-top: 100px;
 }
@@ -22,6 +24,10 @@
     }
 }
 
+#span{
+    border-radius: 10px;
+    padding: 5px;
+   }
 .button-group button {
     margin-right: 8px; // Adds space to the right of each button
   

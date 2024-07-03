@@ -7,6 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { ERole } from 'app/model/ERole';
 import { EUserStatus } from 'app/model/EUserStatus';
 import { User } from 'app/model/User';
@@ -76,7 +77,9 @@ export class LeadComponent implements AfterViewInit, OnInit {
   
 
 
-  constructor(public snackBar: MatSnackBar,public dialog: MatDialog, private formBuilder: FormBuilder,private leadServices: leadService, private http: HttpClient,private csvExportService: CsvExportService) {
+  constructor(public snackBar: MatSnackBar,public dialog: MatDialog, 
+    private route:Router,
+    private formBuilder: FormBuilder,private leadServices: leadService, private http: HttpClient,private csvExportService: CsvExportService) {
     this.getAllProducts();
     this.dataSource = new MatTableDataSource();
   }
@@ -104,122 +107,12 @@ export class LeadComponent implements AfterViewInit, OnInit {
   }
 
   selectedRow(row) {
-    //this.LeadForm.disable();
     this.id = row.id|0;
     this.Act=true;
-   /* this.LeadForm.setValue({firstname:row.name,
-      lastname:row.lastname,
-      adresse:row.adr,
-      phone1:row.phoneNumber1,
-      mail:row.email,
-      phone2:row.phoneNumber2,
-      datecreate:row.creationdate,
-      status:row.status
-    });*/
+    this.route.navigate(['/detail-lead', row]);
   }
 
   
-  EditUser(id: number) {
-    /*
-    if(id!=0){
-    //  this.LeadForm.enable();
- 
-      this.adduserBtn=false;
-      this.ActionEnabled=false;
-      this.SaveEnabled=true;
-    }else{
-      this.showNotif("please select a lead to modify !","danger",true);
-    }
-    }
-
-    showNotif(msj,status,show){
-      this.messageNotif=msj;
-      this.statusNotif=status;
-      this.show=show;
-    }
-
-    cancel(id: number){
-      this.ActionEnabled=true;
-      this.SaveEnabled=false;
-      this.LeadForm.disable();
-    }
-
-    addUser(){
-      this.ActionEnabled=false;
-      this.LeadForm.enable();
-      this.LeadForm.controls['datecreate'].disable();
-      this.LeadForm.controls['status'].disable();
-      
-      this.SaveEnabled=true;
-      this.LeadForm.reset();
-      this.adduserBtn=true;
-      this.id=0;
-      */
-    }
-   
-   
-    save(LeadForm){
-/*
-
-      if(this.adduserBtn){
-        if(this.LeadForm.valid){
-        const newUser = {
-          
-          "name": LeadForm.value.firstname,
-          "lastname": LeadForm.value.lastname,
-          "adr": LeadForm.value.adresse,
-          "email": LeadForm.value.mail,
-          "password": "",
-          "phoneNumber1": LeadForm.value.phone1,
-          "phoneNumber2":LeadForm.value.phone2,
-          "creationdate":new Date(),
-          "status": EUserStatus.En_attente,
-          "role":ERole.Lead
-          }
-        this.leadServices.addLead(newUser).subscribe(() => {
-          this.getAllProducts();
-          this.LeadForm.reset();
-          this.ActionEnabled=true;
-          this.SaveEnabled=false;
-          this.showNotif("Lead added successfully !","success",true);
-        })
-      }else{
-    
-        this.snackBar.open("Please fill in the form !", 'Close', {
-          duration: 5000,
-          horizontalPosition: 'center',
-          verticalPosition: 'bottom'
-        });        
-    }
-      }else{
-        const leadId=this.id;
-        const editedUser = {
-          "id":leadId,
-          "name": LeadForm.value.firstname,
-          "lastname": LeadForm.value.lastname,
-          "adr": LeadForm.value.adresse,
-          "email": LeadForm.value.mail,
-          "phoneNumber1": LeadForm.value.phone1,
-          "phoneNumber2":LeadForm.value.phone2,
-          "status": LeadForm.value.status,
-          }
-        this.leadServices.editLead(editedUser).subscribe(() => {
-          this.showNotif("Lead updated successfully !","warning",true);
-          this.ActionEnabled=true;
-          this.SaveEnabled=false;
-          this.getAllProducts();
-          this.selectedRow(LeadForm);
-          this.id=leadId;
-          this.LeadForm.disabled;
-          
-        })
-      }
-     
-    
-  
-    */
-    }
-
 
     close(){
       this.show=false;

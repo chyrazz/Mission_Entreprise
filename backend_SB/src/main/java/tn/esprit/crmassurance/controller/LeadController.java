@@ -27,6 +27,12 @@ public class LeadController {
         return leadService.GetAllLeads();
     }
 
+    @GetMapping("/Getclients")
+    public List<User> GetClients()
+    {
+        return leadService.GetAllClients();
+    }
+
     @PostMapping("/addlead")
     public User AddLead(@RequestBody User newLead)
     {

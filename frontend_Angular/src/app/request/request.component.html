@@ -11,48 +11,70 @@
             <p class="card-category">Request</p>
         </div>
         <div class="card-content table-responsive table-full-width">
-            <table class="table">
-                <thead class="text-info">
-                    <th>Title</th>
-                    <th>Type</th>
-                    <th>Criticity</th>
-                    <th>Status</th>
-                    <th>Description</th>
-                    <th></th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Request 1</td>
-                        <td>Information</td>
-                        <td>Low</td>
-                        <td>Open</td>
-                        <td class="text-info">This is Request 1</td>
-                        <td>
-                            <button type="button" class="btn btn-info btn-sm" routerLink="/update-request"><i class="fa fa-edit"></i> Update</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Request 2</td>
-                        <td>Claim</td>
-                        <td>Medium</td>
-                        <td>In Progress</td>
-                        <td class="text-info">This is Request 2</td>
-                        <td>
-                            <button type="button" class="btn btn-info btn-sm" routerLink="/update-request"><i class="fa fa-edit"></i> Update</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Request 3</td>
-                        <td>Incident</td>
-                        <td>High</td>
-                        <td>Done</td>
-                        <td class="text-info">This is Request 3</td>
-                        <td>
-                            <button type="button" class="btn btn-info btn-sm" routerLink="/update-request"><i class="fa fa-edit"></i> Update</button>
-                        </td>
-                    </tr>
-                </tbody>
+           
+                <table mat-table [dataSource]="dataSource" MatSort>
+
+                    <ng-container matColumnDef="id">
+                      <th mat-header-cell *matHeaderCellDef>Id Ticket</th>
+                      <td mat-cell *matCellDef="let element">{{element.id}}</td>
+                    </ng-container>
+                  
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="type">
+                      <th mat-header-cell *matHeaderCellDef>Type Request</th>
+                      <td mat-cell *matCellDef="let element">{{element.type}}</td>
+                    </ng-container>
+                  
+                       <!-- Name Column -->
+                       <ng-container matColumnDef="description">
+                        <th mat-header-cell *matHeaderCellDef>Description</th>
+                        <td mat-cell *matCellDef="let element">{{element.description}}</td>
+                      </ng-container>
+          
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="CreationDate">
+                      <th mat-header-cell *matHeaderCellDef>Create date</th>
+                      <td mat-cell *matCellDef="let element">{{element.creationDate  | date: 'dd/MM/yyyy'}}</td>
+                    </ng-container>
+                  
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="client">
+                      <th mat-header-cell *matHeaderCellDef>Client</th>
+                      <td mat-cell *matCellDef="let element">{{element.createdBy.name}}  {{element.createdBy.lastname }}</td>
+                    </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="support">
+                <th mat-header-cell *matHeaderCellDef>Responsable</th>
+                <td mat-cell *matCellDef="let element">{{element.responsableTicket.name}} {{element.responsableTicket.lastname}}</td>
+              </ng-container>
+    
+                    <ng-container matColumnDef="status">
+                      <th mat-header-cell *matHeaderCellDef>Status</th>
+                      <td mat-cell *matCellDef="let element">
+                                
+                        <span id="span" [ngClass]="{
+                          'badge-warning': element.status === 'open',
+                          'badge-success': element.status === 'Resolved',
+                          'badge-danger': element.status === 'Escalated',
+                          'badge-primary': element.status === 'In_progress'
+                        }">
+                        {{element.status}}
+                      </span> 
+                      </td>
+                    </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row class="tr" *matRowDef="let row ; columns: displayedColumns;" (click)="selectedRow(row)"></tr>
+            
             </table>
+          
+            <mat-paginator [pageSizeOptions]="[6, 10, 20]"
+                           showFirstLastButtons
+                           aria-label="Select page of periodic elements">
+            </mat-paginator>      
+                
+         
         </div>
     </div>
 </div>

@@ -16,6 +16,10 @@ export class leadService{
       return this.httpClient.get<any[]>(`${this.API_URL}/Getlead`)
     }
     
+    getAllClient(): Observable<any[]> {
+      return this.httpClient.get<any[]>(`${this.API_URL}/Getclients`)
+    }
+
     getLeadByid(id:number) {
       return this.httpClient.get(`${this.API_URL}/Getlead/${id}`)
     }

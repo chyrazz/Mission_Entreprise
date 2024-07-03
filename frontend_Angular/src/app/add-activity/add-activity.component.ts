@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from 'app/model/User';
 import { ActivityService } from 'app/services/ActivityService';
 import { Activity } from 'app/model/Activity';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-activity',
@@ -17,7 +18,7 @@ import { Activity } from 'app/model/Activity';
 export class AddActivityComponent implements OnInit {
   
 
-  constructor(private formBuilder: FormBuilder,private leadServices: leadService,private ActServices: ActivityService, private http: HttpClient){
+  constructor(private route:Router,private formBuilder: FormBuilder,private leadServices: leadService,private ActServices: ActivityService, private http: HttpClient){
     this.getAllLeads();
   }
   
@@ -45,17 +46,19 @@ export class AddActivityComponent implements OnInit {
  
     let newAct = new Activity(act.value.action,act.value.comment,new Date());
 
+    //get id lead
     this.leadServices.getLeadByid(act.value.lead).subscribe((res)=>{
       newAct.lead=res
-    })
-
+    
+       //get id rep
     this.leadServices.getLeadByid(3).subscribe((res)=>{
       newAct.repAct=res
-    })
 
-   console.log(newAct)
+ //save activity
     this.ActServices.addAct(newAct).subscribe(() => {
-      
+      this.route.navigate(['/activity']);
     })
+  })
+  })
   }
 }

@@ -1,8 +1,18 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
+          <div class="input-container2">
+          
             <button id="act" mat-button routerLink="/add-activity">+ Activity</button>
-        </div>
+            <div>
+              <mat-form-field>
+                <mat-label>Search</mat-label>
+                <input id="search" matInput (keyup)="applyFilter($event)" placeholder="Search activity..." #input><i matSuffix class="material-icons">search</i>
+              </mat-form-field>
+            </div>
+             </div>
+
+          </div>
         <div class="row">
             <div class="col-md-12">
                 <table mat-table [dataSource]="dataSource">
