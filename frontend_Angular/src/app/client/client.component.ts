@@ -39,7 +39,7 @@ export class ClientComponent {
   }
 
   getAllProducts() {
-    this.leadServices.getAllLead().subscribe(res => {
+    this.leadServices.getAllClient().subscribe(res => {
       this.dataSource.data= res;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

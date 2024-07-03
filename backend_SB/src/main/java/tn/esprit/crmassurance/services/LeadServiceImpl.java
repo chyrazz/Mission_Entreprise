@@ -2,6 +2,7 @@ package tn.esprit.crmassurance.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tn.esprit.crmassurance.entities.ERole;
 import tn.esprit.crmassurance.entities.User;
 import tn.esprit.crmassurance.repositories.LeadRepository;
 
@@ -18,9 +19,13 @@ public class LeadServiceImpl implements ILeadService{
 
     @Override
     public List<User> GetAllLeads() {
-        return leadRepo.findAll();
+        return leadRepo.findAllByRole(ERole.Lead);
     }
 
+    @Override
+    public List<User> GetAllClients() {
+        return leadRepo.findAllByRole(ERole.Client);
+    }
 
     @Override
     public User AddNewLead(User l) {
@@ -43,7 +48,7 @@ public class LeadServiceImpl implements ILeadService{
                     user1.setPhoneNumber2(newLead.getPhoneNumber2());
                     user1.setAdr(newLead.getAdr());
                     user1.setStatus(newLead.getStatus());
-
+                    user1.setRole(newLead.getRole());
                     leadRepo.save(user1);
                 });
     }

@@ -1,35 +1,41 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
-          <button id="act" mat-button routerLink="/detail-lead">+ Lead</button>
-            <div class="col-md-12">
+          <div class="input-container2">
+          <button id="act2" mat-button routerLink="/detail-lead">+ Lead</button>
+        
+                          <div class="input-container">
+                            <mat-form-field>
+                              <mat-label>Search</mat-label>
+                              <input id="search" matInput (keyup)="applyFilter($event)" placeholder="Ex. Lead" #input><i matSuffix class="material-icons">search</i>
+                            </mat-form-field>
+                            
+                            <button id="act"  [matMenuTriggerFor]="menu2">Actions <i class="material-icons">keyboard_arrow_down</i></button>
+                            <mat-menu #menu2="matMenu">
+                             <button mat-menu-item id="btn" (click)="openDialog()"><i class="material-icons">publish</i>Import</button>
+                             <button mat-menu-item id="btn" (click)="exportData()"><i class="material-icons" >download</i>Export</button>
+                           </mat-menu>
+ 
+                            <button id="menu" mat-button [matMenuTriggerFor]="menu"><i class="material-icons">filter_alt</i></button>
+                             <mat-menu #menu="matMenu" >
+                              <button mat-menu-item (click)=" clearFilters()">All</button>
+                              <button mat-menu-item (click)="filtreStatus('En_attente','status')">Pending</button>
+                              <button mat-menu-item (click)="filtreStatus('Qualified','status')">Qualified</button>
+                              <button mat-menu-item (click)="filtreStatus('Disqualified','status')">Disqualified</button>
+                            </mat-menu>
+                           </div>
+                        </div>
+
+          <div class="col-md-12">
 
                 <div class="card">
-                  <div class="input-container2">
+                 
                     <div><h4 >List Of Leads</h4></div>
-                    <button id="act"  [matMenuTriggerFor]="menu2">Actions <i class="material-icons">keyboard_arrow_down</i></button>
-                           <mat-menu #menu2="matMenu">
-                            <button mat-menu-item id="btn" (click)="openDialog()"><i class="material-icons">publish</i>Import</button>
-                            <button mat-menu-item id="btn"><i class="material-icons" (click)="exportData()">download</i>Export</button>
-                          </mat-menu>
-                        </div>
+                    
                         
                     <div class="card-body">
                      
-                         <div class="input-container">
-                          <mat-form-field>
-                            <mat-label>Search</mat-label>
-                            <input id="search" matInput (keyup)="applyFilter($event)" placeholder="Ex. Lead" #input><i matSuffix class="material-icons">search</i>
-                          </mat-form-field>
-                          
-                          <button id="menu" mat-button [matMenuTriggerFor]="menu"><i class="material-icons">filter_alt</i></button>
-                           <mat-menu #menu="matMenu" >
-                            <button mat-menu-item (click)=" clearFilters()">All</button>
-                            <button mat-menu-item (click)="filtreStatus('En_attente','status')">Pending</button>
-                            <button mat-menu-item (click)="filtreStatus('Qualified','status')">Qualified</button>
-                            <button mat-menu-item (click)="filtreStatus('Disqualified','status')">Disqualified</button>
-                          </mat-menu>
-                         </div>
+                       
 
                           <div class="table-responsive">   
                       

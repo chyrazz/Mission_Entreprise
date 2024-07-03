@@ -38,7 +38,7 @@ public class User implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private ERole role;
-
+/*
     @OneToMany(mappedBy = "representant",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Opportunity> lisOPPAsRep;
 
@@ -55,6 +55,6 @@ public class User implements Serializable {
     private List<Contract> ContratsAsRep;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private List<Contract> ContratsAsClient;
+    private List<Contract> ContratsAsClient;*/
 
 }
