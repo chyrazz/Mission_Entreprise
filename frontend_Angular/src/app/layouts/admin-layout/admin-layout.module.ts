@@ -28,6 +28,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
+import { OpportunityListModule } from 'app/opportunity-list/opportunity-list.module';
 
 @NgModule({
   imports: [
@@ -50,7 +51,7 @@ import {MatMenuModule} from '@angular/material/menu';
     MatCardModule,
     MatChipsModule,
     MatBadgeModule,
-    MatSnackBarModule
+    MatSnackBarModule, OpportunityListModule
   ],
   declarations: [
     DashboardComponent,

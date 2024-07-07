@@ -1,0 +1,32 @@
+.opp-card-container{
+    margin-bottom: 3px;
+    background-color: rgb(227, 241, 241);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 50px;
+    gap: 5px;
+    transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+    opacity: 1;
+}
+
+.opp-card-container.hidden {
+    /* Styles when card is hidden */
+    opacity: 0;
+    max-height: 0;
+    padding: 0;
+    transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+  }
+.menu-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 70px;
+    gap: 5px;
+    background-color: rgb(216, 251, 216);
+    margin-bottom: 4px;
+    font-weight: 600;
+    align-items: center;
+}
+
+.justify-left-container{
+    text-align: left;
+    justify-content: left;
+    display: flex;
+}

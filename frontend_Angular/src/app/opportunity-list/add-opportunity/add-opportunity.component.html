@@ -1,0 +1,40 @@
+<div style="display: flex;justify-content: space-between;"><div style="display: flex; gap: 10px;font-weight: 600;">
+  <mat-icon style="color: rgb(86, 86, 237);">work</mat-icon>
+
+  <span *ngIf="!opportunityDetails">Ajouter une opportunité</span>
+  <span *ngIf="opportunityDetails">Mettre à jour une opportunité</span>
+</div>
+
+<div>
+  <mat-icon style="color: gray; cursor: pointer;" (click)="onCloseDialog()">close</mat-icon>
+</div></div>
+
+<div style="height: calc(100% - 50px) ; display: flex; flex-direction: column;justify-content: space-between;">
+    <form style="padding-top: 50px;" class="example-container">
+      <mat-form-field appearance="outline" [formGroup]="addFormGroup">
+        <input matInput placeholder="Description"[formControl]="descriptionCtrl">
+        <mat-label>Description</mat-label>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline"  [formGroup]="addFormGroup" style="margin-bottom: 20px;">
+        <mat-label>Date de clôture</mat-label>
+        <input matInput [matDatepicker]="picker" [formControl]="closureDateCtrl">
+        <mat-error *ngIf="closureDateCtrl.touched && closureDateCtrl.hasError('required')">La date de clôture est obligatoire</mat-error>
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field  [formGroup]="addFormGroup" appearance="outline">
+        <mat-label>Utilisateur</mat-label> <mat-select placeholder="Utilisateur" [formControl]="userCtrl">
+          <mat-option *ngFor="let user of userList" [value]="user">
+            {{ user.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  <div style="display: flex; justify-content: flex-end;gap: 5px;">
+    <button mat-raised-button color="secondary" (click)="onCloseDialog()">Annuler</button>
+    <button matTooltipPosition="above" [matTooltip]="addFormGroup.invalid? 'Veuillez vérifier les champs': ''" mat-raised-button color="primary" (click)="onAddClick()" [disabled]="addFormGroup.invalid">{{opportunityDetails? "Modifier": 'Ajouter'}}</button>
+  </div>
+</div>
