@@ -8,3 +8,29 @@ table {
     font-weight: bold;
     margin: 5px;
 }
+
+
+
+.input-container2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+
+.input-container2 div {
+ 
+  margin: 0;
+  flex: 1;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.input-container2 button {
+  margin-right: 10px; /* Espace entre l'input et l'icône */
+  font-size: 15px;
+  border-radius: 5px;
+}

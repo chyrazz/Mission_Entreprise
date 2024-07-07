@@ -10,13 +10,12 @@ import java.util.List;
 
 @Repository
 public interface ContractRepository extends JpaRepository<Contract,Long> {
+/*
     List<Contract> findByEndDateBetween(Date date, Date date1);
 
     List<Contract> findByStartDateBetween(Date date, Date date1);
 
-    @Query("SELECT c FROM Contract c WHERE c.representant.role.name = 'Commerciale'")
+    @Query("SELECT c FROM Contract c WHERE c.representant.role = 'Commerciale'")
     List<Contract> findByRepresentantCommercial();
-
-
-    //test05
+*/
 }

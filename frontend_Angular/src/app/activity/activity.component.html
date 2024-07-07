@@ -1,36 +1,82 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
-            <button id="act" mat-button>+ Activity</button>
-        </div>
+          <div class="input-container2">
+          
+            <button id="act" mat-button routerLink="/add-activity">+ Activity</button>
+            <div>
+              <mat-form-field>
+                <mat-label>Search</mat-label>
+                <input id="search" matInput (keyup)="applyFilter($event)" placeholder="Search activity..." #input><i matSuffix class="material-icons">search</i>
+              </mat-form-field>
+            </div>
+             </div>
+
+          </div>
         <div class="row">
             <div class="col-md-12">
                 <table mat-table [dataSource]="dataSource">
               
                   <!-- Position Column -->
-                  <ng-container matColumnDef="position">
+                  <ng-container matColumnDef="id">
                     <th mat-header-cell *matHeaderCellDef> No. </th>
-                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
                   </ng-container>
               
                   <!-- Name Column -->
-                  <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef> Name </th>
-                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                  <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef> Object </th>
+                    <td mat-cell *matCellDef="let element"> {{element.action}} </td>
                   </ng-container>
               
                   <!-- Weight Column -->
-                  <ng-container matColumnDef="weight">
-                    <th mat-header-cell *matHeaderCellDef> Weight </th>
-                    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                  <ng-container matColumnDef="information">
+                    <th mat-header-cell *matHeaderCellDef><i class="material-icons">
+                      comment
+                    </i> Information </th>
+                    <td mat-cell *matCellDef="let element"> {{element.information}} </td>
                   </ng-container>
               
                   <!-- Symbol Column -->
-                  <ng-container matColumnDef="symbol">
-                    <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                  <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef><span class="material-icons">
+                      calendar_month
+                      </span> Date </th>
+                    <td mat-cell *matCellDef="let element"> {{element.exchangeDate | date: 'dd/MM/yyyy HH:MM'}} </td>
                   </ng-container>
               
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="leadname">
+                      <th mat-header-cell *matHeaderCellDef><i class="material-icons">
+                        person
+                      </i> Lead </th>
+                      <td mat-cell *matCellDef="let element"> {{element.lead.name}} {{element.lead.lastname}} </td>
+                    </ng-container>
+                
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="leadmail">
+                      <th mat-header-cell *matHeaderCellDef><i class="material-icons">
+                        mail
+                      </i> E-mail Lead </th>
+                      <td mat-cell *matCellDef="let element"> {{element.lead.email}} </td>
+                    </ng-container>
+                
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="leadTel">
+                      <th mat-header-cell *matHeaderCellDef> <i class="material-icons">
+                        contact_phone
+                      </i> Lead number </th>
+                      <td mat-cell *matCellDef="let element"> {{element.lead.phoneNumber1}} </td>
+                    </ng-container>
+                
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="repname">
+                      <th mat-header-cell *matHeaderCellDef> <i class="material-icons">
+                        person
+                      </i>Sales person </th>
+                      <td mat-cell *matCellDef="let element"> {{element.repAct.name}} {{element.repAct.lastname}} </td>
+                    </ng-container>
+
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>

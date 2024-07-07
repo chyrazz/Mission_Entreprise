@@ -1,0 +1,124 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12" id="icons">
+            <i class="material-icons" routerLink="/lead">arrow_back</i>
+          </div>
+          <div class="col-md-12">
+            <div class="alert alert-{{statusNotif}}" *ngIf="show==true" >
+                <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="close()">
+                    <i class="material-icons">close</i>
+                </button>
+                <span>{{messageNotif}}</span>
+            </div>
+            
+          </div>
+          
+          <div class="col-lg-12" id="icons">
+            <div class="row"  *ngIf="Act==true">
+              <div class="col-md-6">
+                <button mat-raised-button color="primary" matBadge="8" matBadgePosition="before" matBadgeColor="accent">
+                  Activities
+                  <i class="material-icons">arrow_forward</i>
+                </button>
+                </div>
+
+                <div class="col-md-6">
+                  <button mat-raised-button color="primary" matBadge="8" matBadgePosition="before" matBadgeColor="accent">
+                    Opportunities
+                    <i class="material-icons">arrow_forward</i>
+                  </button>
+                  </div>
+
+
+            </div>
+              </div>
+              <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 class="card-title">Lead Details :</h4>
+                        <p class="card-category">Complete Lead profile</p>
+                    </div>
+                <div class="card-body">
+                <div id="form" class="col-md-12">
+                  <form [formGroup]="LeadForm" class="example-form">
+                    <div class="row">
+                                <mat-form-field class="col-md-6">
+                                  <mat-label>Code Lead</mat-label>
+                                  <input matInput disabled [value]="id">
+                                </mat-form-field>
+                                <mat-form-field class="col-md-6">
+                                  <mat-label>Created on</mat-label>
+                                  <input matInput formControlName="datecreate" disabled >
+                                </mat-form-field>
+                          </div>
+                              <div class="row">
+                               <mat-form-field class="col-md-6">
+                                    <mat-label>First name</mat-label>
+                                    <input matInput  formControlName="firstname">
+                                    <mat-error *ngIf="this.LeadForm.controls['firstname'].hasError('required')">First name is required </mat-error>
+                                  </mat-form-field>
+                                 
+                                <mat-form-field  class="col-md-6">
+                                    <mat-label>Last Name</mat-label>
+                                    <input matInput formControlName="lastname">
+                                    <mat-error *ngIf="this.LeadForm.controls['lastname'].hasError('required')">Last name is required </mat-error>
+                                  </mat-form-field>
+                                </div>
+                              
+                                  <mat-form-field class="example-full-width">
+                                    <mat-label>Address</mat-label>
+                                    <textarea matInput formControlName="adresse"></textarea>
+                                    <mat-error *ngIf="this.LeadForm.controls['adresse'].hasError('required')">Adress is required </mat-error>
+                                  </mat-form-field>
+
+                                <div class="row"> 
+                                <mat-form-field class="col-md-6">
+                                    <mat-label>Phone Number 1</mat-label>
+                                    <input matInput  formControlName="phone1">
+                                    <mat-error *ngIf="this.LeadForm.controls['phone1'].hasError('required')">Phone number is required </mat-error>
+                                    <mat-error *ngIf="this.LeadForm.controls['phone1'].errors?.pattern">Invalid email format</mat-error>
+    
+                                  </mat-form-field>
+    
+                                  <mat-form-field class="col-md-6">
+                                    <mat-label>Phone Number 2</mat-label>
+                                    <input matInput formControlName="phone2">
+                                    <mat-error *ngIf="this.LeadForm.controls['phone2'].errors?.pattern">Invalid email format</mat-error>
+                                  </mat-form-field>
+                                </div>
+                              
+                                    <mat-form-field class="example-full-width">
+                                      <mat-label>Email</mat-label>
+                                      <input matInput  formControlName="mail">
+                                      <mat-error *ngIf="this.LeadForm.controls['mail'].hasError('required')">Email is required </mat-error>
+                                      <mat-error *ngIf="this.LeadForm.controls['mail'].hasError('email')">Invalid email format </mat-error>
+                                      
+                                    </mat-form-field>
+              
+                                   
+                                
+                                  <mat-form-field>
+                                    <mat-select [(ngModel)]="selectedValue" formControlName="status" placeholder="Change the Status of a lead!">
+                                        <mat-option value="En_attente">En attente</mat-option>
+                                        <mat-option value="Qualified">Qualified</mat-option>
+                                        <mat-option value="Disqualified">Disqualified</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+   
+                              
+                              <div class="col-lg-12" id="icons">
+                                <div class="row">
+                            <div class="col-md-4">
+                                <a class="nav-link" (click)="save(LeadForm)">
+                                  <i class="material-icons">save</i>
+                                 <p>Save</p>
+                                </a>
+                           </div>
+                                </div></div>
+
+                  </form>
+                </div>
+            </div>
+                </div>
+              </div></div></div>

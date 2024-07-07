@@ -27,12 +27,18 @@ public class User implements Serializable {
     private String phoneNumber2;
     private Date creationdate;
 
+    @OneToMany(mappedBy ="userCreateur" )
+    private List<User> usercrees;
+
+    @ManyToOne
+    private User userCreateur;
+
     @Enumerated(EnumType.STRING)
     private EUserStatus status;
 
     @Enumerated(EnumType.STRING)
     private ERole role;
-
+/*
     @OneToMany(mappedBy = "representant",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Opportunity> lisOPPAsRep;
 
@@ -45,16 +51,10 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "ResponsableTicket",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<CustomerRequest> listTicketsAsSupport;
 
-    @OneToMany(mappedBy = "repAct",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Activity> ActivityAsRep;
-
-    @OneToMany(mappedBy = "lead",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Activity> ActivityAsLead;
-
     @OneToMany(mappedBy = "representant", cascade = CascadeType.ALL)
     private List<Contract> ContratsAsRep;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private List<Contract> ContratsAsClient;
+    private List<Contract> ContratsAsClient;*/
 
 }

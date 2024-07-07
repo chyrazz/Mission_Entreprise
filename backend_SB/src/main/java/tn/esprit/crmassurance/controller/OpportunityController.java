@@ -8,6 +8,7 @@ import tn.esprit.crmassurance.services.OpportunityServiceImpl;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/Opportunity")
 public class OpportunityController {
     @Autowired
