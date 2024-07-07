@@ -28,12 +28,12 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
+import { OpportunityListModule } from 'app/opportunity-list/opportunity-list.module';
 import { CsvExportService } from 'app/services/CsvExportService';
 import { AddActivityComponent } from 'app/add-activity/add-activity.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {NativeDateAdapter} from '@angular/material/core';
-import { LeadDetailsComponent } from 'app/lead-details/lead-details.component';
-
+import {NativeDateAdapter} from '@angular/material
+import { LeadDetailsComponent } from 'app/lead-details/lead-details.componen
 @NgModule({
   imports: [
     CommonModule,
@@ -56,6 +56,7 @@ import { LeadDetailsComponent } from 'app/lead-details/lead-details.component';
     MatCardModule,
     MatChipsModule,
     MatBadgeModule,
+    MatSnackBarModule, OpportunityListModule
     MatSnackBarModule,
     MatDatepickerModule
   ],
