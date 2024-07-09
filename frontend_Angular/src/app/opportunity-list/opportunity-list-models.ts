@@ -1,4 +1,4 @@
-import { Guid } from "guid-typescript";
+
 import  moment from "moment";
 
 export class OpportunityDetails {
@@ -17,7 +17,7 @@ export class OpportunityDetails {
     public user: OpportunityUser,
     public lead: OpportunityUser
   ) {
-    this.id = Guid.create().toString()
+   // this.id = Guid.create().toString()
     
  this.formatDates()
   }
