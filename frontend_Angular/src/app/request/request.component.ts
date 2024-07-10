@@ -11,7 +11,7 @@ import { RequestService } from 'app/services/RequestService';
 })
 export class RequestComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'type', 'description', 'CreationDate', 'client', 'support','status'];
+  displayedColumns: string[] = ['id','title','type','CreationDate','criticity', 'description','status'];
   dataSource: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
