@@ -16,7 +16,10 @@ public class CustomerRequest implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
+
+    private String title;
 
     @Enumerated(EnumType.STRING)
     private ETypeRequest type;
@@ -24,17 +27,19 @@ public class CustomerRequest implements Serializable {
     @Enumerated(EnumType.STRING)
     private ERequestStatus status;
 
+    @Enumerated(EnumType.STRING)
+    private ERequestCriticity criticity;
+
     private String description;
-    private String commentaire;
-    private Date CreationDate;
-    private Date UpdateDate;
+    private Date creationDate;
+    private Date updateDate;
 
     @ManyToOne
     @JoinColumn(name = "representant_id", nullable = true)
-    private User ResponsableTicket;
+    private User responsableTicket;
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
-    private User CreatedBy;
+    private User createdBy;
 }
 
