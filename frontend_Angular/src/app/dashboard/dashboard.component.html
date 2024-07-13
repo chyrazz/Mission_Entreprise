@@ -2,7 +2,7 @@
   <div class="container-fluid">
       <div class="row">
 
-        <mat-tab-group>
+        <mat-tab-group (selectedTabChange)="onTabChange($event)">
             <mat-tab label="clients Dashboard"> <app-clients-dashboard> </app-clients-dashboard> </mat-tab>
             <mat-tab label="contracts Dashboard"> <app-contracts-dashboard> </app-contracts-dashboard> </mat-tab>
             <mat-tab label="support Dashboard"> <app-support-dashboard> </app-support-dashboard> </mat-tab>
