@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import Chartist from 'chartist';
 
 @Component({
@@ -6,12 +6,13 @@ import Chartist from 'chartist';
   templateUrl: './clients-dashboard.component.html',
   styleUrls: ['./clients-dashboard.component.scss']
 })
-export class ClientsDashboardComponent implements AfterViewInit {
+export class ClientsDashboardComponent implements AfterViewInit, OnDestroy {
 
   selectedCategory: string = '';
   selectedDateRange: string = '';
   RequestStatus: string = '';
   UserStatus: string = '';
+  websiteViewsChart: any;
 
   applyFilters() {
     // Logic to filter data based on selectedCategory and selectedDateRange
@@ -20,6 +21,8 @@ export class ClientsDashboardComponent implements AfterViewInit {
   shouldDisplay(category: string): boolean {
     return this.selectedCategory === '' || this.selectedCategory === category;
   }
+
+  
 
   startAnimationForLineChart(chart) {
     let seq: any, delays: any, durations: any;
@@ -79,12 +82,17 @@ export class ClientsDashboardComponent implements AfterViewInit {
     seq2 = 0;
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(){
+    this.renderChart()
+  }
+  
+   renderChart(){
     const dataDailySalesChart: any = {
       labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
       series: [
         [12, 17, 7, 17, 23, 18, 38]
       ]
+
     };
 
     const optionsDailySalesChart: any = {
@@ -142,7 +150,16 @@ export class ClientsDashboardComponent implements AfterViewInit {
         }
       }]
     ];
-    const websiteViewsChart = new Chartist.Bar('#websiteViewsChart', datawebsiteViewsChart, optionswebsiteViewsChart, responsiveOptions);
-    this.startAnimationForBarChart(websiteViewsChart);
+    this.websiteViewsChart = new Chartist.Bar('#websiteViewsChart', datawebsiteViewsChart, optionswebsiteViewsChart, responsiveOptions);
+    this.startAnimationForBarChart(this.websiteViewsChart);
   }
+
+
+
+  ngOnDestroy(): void {
+    if (this.websiteViewsChart) {
+      this.websiteViewsChart.detach();
+    }
+  }
+
 }

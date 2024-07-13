@@ -1,459 +1,155 @@
 <div class="main-content">
     <div class="container-fluid">
-  
-  
       <div class="row">
-          <div class="col-lg-12">
-            <div class="filter-container">
-              <mat-form-field appearance="fill">
-                <mat-label>Category</mat-label>
-                <mat-select [(ngModel)]="selectedCategory">
-                  <mat-option value="">All</mat-option>
-                  <mat-option value="contracts">Contracts</mat-option>
-                  <mat-option value="requests">Requests</mat-option>
-                  <mat-option value="claims">Claims</mat-option>
-                  <mat-option value="conversion">Conversion Rate</mat-option>
-                </mat-select>
-              </mat-form-field>
-      
-              <mat-form-field appearance="fill">
-                <mat-label>Date Range</mat-label>
-                <mat-select [(ngModel)]="selectedDateRange">
-                  <mat-option value="">All</mat-option>
-                  <mat-option value="monthly">Per Month</mat-option>
-                  <mat-option value="quarterly">Per Quarter</mat-option>
-                  <mat-option value="yearly">Per Year</mat-option>
-                </mat-select>
-              </mat-form-field>
-    
-              <mat-form-field appearance="fill">
-                <mat-label>Request Status</mat-label>
-                <mat-select [(ngModel)]="RequestStatus">
-                  <mat-option value="">All</mat-option>
-                  <mat-option value="progress">In progress</mat-option>
-                  <mat-option value="escalated">Escalated</mat-option>
-                  <mat-option value="resolved">Resolved</mat-option>
-                  <mat-option value="suspended">Suspended</mat-option>
-                  <mat-option value="open">Open</mat-option>
-                </mat-select>
-              </mat-form-field>
-    
-              <mat-form-field appearance="fill">
-                <mat-label>User Status</mat-label>
-                <mat-select [(ngModel)]="UserStatus">
-                  <mat-option value="">All</mat-option>
-                  <mat-option value="active">Active</mat-option>
-                  <mat-option value="inactive">Inactive</mat-option>
-                  <mat-option value="qualified">Qualified</mat-option>
-                  <mat-option value="disqualified">Disqualified</mat-option>
-                  <mat-option value="attente">En attente</mat-option>
-                </mat-select>
-              </mat-form-field>
+        <div class="col-lg-12">
+          <div class="filter-container">
+            <mat-form-field appearance="fill">
+              <mat-label>Category</mat-label>
+              <mat-select [(ngModel)]="selectedCategory">
+                <mat-option value="">All</mat-option>
+                <mat-option value="contracts">Contracts</mat-option>
+                <mat-option value="requests">Requests</mat-option>
+                <mat-option value="claims">Claims</mat-option>
+                <mat-option value="conversion">Conversion Rate</mat-option>
+              </mat-select>
+            </mat-form-field>
   
+            <mat-form-field appearance="fill">
+              <mat-label>Date Range</mat-label>
+              <mat-select [(ngModel)]="selectedDateRange">
+                <mat-option value="">All</mat-option>
+                <mat-option value="monthly">Per Month</mat-option>
+                <mat-option value="quarterly">Per Quarter</mat-option>
+                <mat-option value="yearly">Per Year</mat-option>
+              </mat-select>
+            </mat-form-field>
   
-    
-              <button mat-raised-button (click)="applyFilters()">Apply Filters</button>
+            <mat-form-field appearance="fill">
+              <mat-label>Request Status</mat-label>
+              <mat-select [(ngModel)]="RequestStatus">
+                <mat-option value="">All</mat-option>
+                <mat-option value="progress">In progress</mat-option>
+                <mat-option value="escalated">Escalated</mat-option>
+                <mat-option value="resolved">Resolved</mat-option>
+                <mat-option value="suspended">Suspended</mat-option>
+                <mat-option value="open">Open</mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <mat-form-field appearance="fill">
+              <mat-label>User Status</mat-label>
+              <mat-select [(ngModel)]="UserStatus">
+                <mat-option value="">All</mat-option>
+                <mat-option value="active">Active</mat-option>
+                <mat-option value="inactive">Inactive</mat-option>
+                <mat-option value="qualified">Qualified</mat-option>
+                <mat-option value="disqualified">Disqualified</mat-option>
+                <mat-option value="attente">En attente</mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <button mat-raised-button (click)="applyFilters()">Apply Filters</button>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4">
+          <div class="card card-stats">
+            <div class="card-header card-header-info card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">diversity_3</i>
+              </div>
+              <p class="card-category">Total Clients</p>
+              <h3 class="card-title">65</h3>
             </div>
           </div>
-        </div>  
+        </div>
+  
+        <div class="col-lg-4 col-md-4">
+          <div class="card card-stats">
+            <div class="card-header card-header-info card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">transcribe</i>
+              </div>
+              <p class="card-category">Total Leads</p>
+              <h3 class="card-title">32</h3>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-lg-4 col-md-4">
+          <div class="card card-stats">
+            <div class="card-header card-header-info card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">trending_flat</i>
+              </div>
+              <p class="card-category">Conversion Rate</p>
+              <h3 class="card-title">87%</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row">
+        
+        <div class="col-md-4">
+          <div class="card card-chart">
+            <div class="card-header card-header">
+              <div class="ct-chart" id="websiteViewsChart"></div>
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Distribution of clients by Status</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card card-chart">
+            <div class="card-header card-header">
+              <div class="ct-chart" id="completedTasksChart"></div>
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Client Acquisition Trends</h4>
+            </div>
+          </div>
+        </div>
 
+        <div class="col-md-4">
+            <div class="card card-chart">
+              <div class="card-header">
+                <div class="ct-chart" id="websiteViewsChart3"></div>
+              </div>
+              <div class="card-body">
+                <h4 class="card-title">Reasons for Lead Non-Conversion</h4>
+              </div>
+            </div>
+          </div>
+
+      </div>
   
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-info card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">trending_flat</i>
-                        </div>
-                        <p class="card-category">Total Clients</p>
-                        <h3 class="card-title">65</h3>
-                    </div>
-                </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header card-header-warning">
+              <h4 class="card-title">Commercials' Performance</h4>
             </div>
-        
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-info card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">trending_flat</i>
-                        </div>
-                        <p class="card-category">Total Leads</p>
-                        <h3 class="card-title">32</h3>
-                    </div>
-                </div>
+            <div class="card-body table-responsive">
+              <table class="table table-hover">
+                <thead class="text-warning">
+                  <tr>
+                    <th>ID</th>
+                    <th>Commercial</th>
+                    <th>Number of Clients</th>
+                    <th>Number of Leads</th>
+                    <th>Leads Converted to Clients</th>
+                  </tr>
+                </thead>
+                
+              </table>
             </div>
-        
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-info card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">trending_flat</i>
-                        </div>
-                        <p class="card-category">Conversion Rate</p>
-                        <h3 class="card-title">87%</h3>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-        
-      
-  
-      
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card card-chart">
-                    <div class="card-header card-header">
-                        <div class="ct-chart" id="dailySalesChart"></div>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">Tickets handled by Agent</h4>
-                        <p class="card-category">
-                            <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-chart">
-                    <div class="card-header card-header">
-                        <div class="ct-chart" id="websiteViewsChart"></div>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">Opportunities Secured by Salesperson</h4>
-                        <p class="card-category">Last Campaign Performance</p>
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-chart">
-                    <div class="card-header card-header">
-                        <div class="ct-chart" id="completedTasksChart"></div>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">Contracts Managed by Sales Representative</h4>
-                        <p class="card-category">Last Campaign Performance</p>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-  
-  
-        <div class="row">
-            <div class="col-lg-6 col-md-12">
-                <div class="card">
-                    <div class="card-header card-header-tabs card-header-primary">
-                        <div class="nav-tabs-navigation">
-                            <div class="nav-tabs-wrapper">
-                                <span class="nav-tabs-title">Tasks:</span>
-                                <ul class="nav nav-tabs" data-tabs="tabs">
-                                    <li class="nav-item">
-                                        <a mat-button class="nav-link active" href="#profile" data-toggle="tab">
-                                            <i class="material-icons">bug_report</i> General Administration
-                                            <div class="ripple-container"></div>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a mat-button class="nav-link" href="#messages" data-toggle="tab">
-                                            <i class="material-icons">code</i> Leads|Clients Management
-                                            <div class="ripple-container"></div>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a mat-button class="nav-link" href="#settings" data-toggle="tab">
-                                            <i class="material-icons">cloud</i> Performance Monitoring
-                                            <div class="ripple-container"></div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="profile">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                                        <span class="form-check-sign">
-                                                            <span class="check"></span>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                            <td class="td-actions text-right">
-                                                <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-sign">
-                                                            <span class="check"></span>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                                            <td class="td-actions text-right">
-                                                <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-sign">
-                                                            <span class="check"></span>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                            </td>
-                                            <td class="td-actions text-right">
-                                                <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                                        <span class="form-check-sign">
-                                                            <span class="check"></span>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Create 4 Invisible User Experiences you Never Knew About</td>
-                                            <td class="td-actions text-right">
-                                                 
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="tab-pane" id="messages">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                                        <span class="form-check-sign">
-                                                            <span class="check"></span>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                            </td>
-                                            <td class="td-actions text-right">
-                                                <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-sign">
-                                                            <span class="check"></span>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                            <td class="td-actions text-right">
-                                                <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="tab-pane" id="settings">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-sign">
-                                                            <span class="check"></span>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                                            <td class="td-actions text-right">
-                                                <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                                        <span class="form-check-sign">
-                                                            <span class="check"></span>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                            </td>
-                                            <td class="td-actions text-right">
-                                                <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                                        <span class="form-check-sign">
-                                                            <span class="check"></span>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                            <td class="td-actions text-right">
-                                                <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-            
-            <div class="col-lg-6 col-md-12">
-                <div class="card">
-                    <div class="card-header card-header-warning">
-                        <h4 class="card-title">Clients Stats</h4>
-                        <p class="card-category">Clients' requests stats : Types and status</p>
-                    </div>
-                    <div class="card-body table-responsive">
-                        <table class="table table-hover">
-                            <thead class="text-warning">
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Request Type</th>
-                                <th>Request Status</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Dakota Rice</td>
-                                    <td>Incident</td>
-                                    <td>In progress</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Minerva Hooper</td>
-                                    <td>Claim</td>
-                                    <td>Escalated</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Sage Rodriguez</td>
-                                    <td>Incident</td>
-                                    <td>Resolved</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Philip Chaney</td>
-                                    <td>Information</td>
-                                    <td>Suspended</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
   </div>
   
