@@ -1,4 +1,6 @@
-import { Component, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
+import { EUserStatus } from 'app/model/EUserStatus';
+import { DashboardService } from 'app/services/DashboardService';
 import Chartist from 'chartist';
 
 @Component({
@@ -6,13 +8,62 @@ import Chartist from 'chartist';
   templateUrl: './clients-dashboard.component.html',
   styleUrls: ['./clients-dashboard.component.scss']
 })
-export class ClientsDashboardComponent implements AfterViewInit, OnDestroy {
+export class ClientsDashboardComponent implements AfterViewInit, OnDestroy, OnInit {
+
+
+  constructor(private service: DashboardService) { } 
+  ngOnInit(): void {
+    this.service.getTotalClients().subscribe(res=>{
+      this.totalClients=res
+    });
+
+    this.service.getTotalLeads().subscribe(res=>{
+      this.totalLeads=res
+    });
+
+    this.service.getLeadsByStatus("Qualified").subscribe(res=>{
+      this.leadsByStatus.push(res);
+      this.service.getLeadsByStatus("Disqualified").subscribe(res2=>{
+        this.leadsByStatus.push(res2);
+        this.service.getLeadsByStatus("En_attente").subscribe(res3=>{
+          this.leadsByStatus.push(res3);
+
+          // Render the chart after data is fully loaded!!!!!!!!!!!!!!!!!!!!!
+          this.renderChart(); //X IMPORTANT X
+
+        })
+      })
+    });
+
+    
+    this.service.getCauseDisqualified("unsatisfied_needs").subscribe(res=>{
+      this.cause.push(res);
+      this.service.getCauseDisqualified("high_pricing").subscribe(res2=>{
+        this.cause.push(res2);
+        this.service.getCauseDisqualified("changing_needs").subscribe(res3=>{
+          this.cause.push(res3);
+
+          // Render the chart after data is fully loaded!!!!!!!!!!!!!!!!!!!!!
+          this.renderChart(); //X IMPORTANT X
+
+        })
+      })
+    });
+
+    console.log(this.cause);
+  }
+  ;
+
 
   selectedCategory: string = '';
   selectedDateRange: string = '';
   RequestStatus: string = '';
   UserStatus: string = '';
   websiteViewsChart: any;
+  totalClients: number = 0;
+  totalLeads: number = 0;
+  leadsByStatus: number[] = [];
+  cause : number[] = [];
 
   applyFilters() {
     // Logic to filter data based on selectedCategory and selectedDateRange
@@ -22,7 +73,7 @@ export class ClientsDashboardComponent implements AfterViewInit, OnDestroy {
     return this.selectedCategory === '' || this.selectedCategory === category;
   }
 
-  
+
 
   startAnimationForLineChart(chart) {
     let seq: any, delays: any, durations: any;
@@ -30,7 +81,7 @@ export class ClientsDashboardComponent implements AfterViewInit, OnDestroy {
     delays = 80;
     durations = 500;
 
-    chart.on('draw', function(data) {
+    chart.on('draw', function (data) {
       if (data.type === 'line' || data.type === 'area') {
         data.element.animate({
           d: {
@@ -64,7 +115,7 @@ export class ClientsDashboardComponent implements AfterViewInit, OnDestroy {
     seq2 = 0;
     delays2 = 80;
     durations2 = 500;
-    chart.on('draw', function(data) {
+    chart.on('draw', function (data) {
       if (data.type === 'bar') {
         seq2++;
         data.element.animate({
@@ -82,11 +133,11 @@ export class ClientsDashboardComponent implements AfterViewInit, OnDestroy {
     seq2 = 0;
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.renderChart()
   }
-  
-   renderChart(){
+
+  renderChart() {
     const dataDailySalesChart: any = {
       labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
       series: [
@@ -127,24 +178,24 @@ export class ClientsDashboardComponent implements AfterViewInit, OnDestroy {
     this.startAnimationForLineChart(completedTasksChart);
 
     const datawebsiteViewsChart = {
-      labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
-      series: [
-        [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
-      ]
+      labels: ['Qualified', 'Disqualified', 'Pending'],
+      series: 
+      [this.leadsByStatus]
+      
     };
     const optionswebsiteViewsChart = {
       axisX: {
         showGrid: false
       },
       low: 0,
-      high: 1000,
+      high: 10,
       chartPadding: { top: 0, right: 5, bottom: 0, left: 0 }
     };
     const responsiveOptions: any[] = [
       ['screen and (max-width: 640px)', {
         seriesBarDistance: 5,
         axisX: {
-          labelInterpolationFnc: function(value) {
+          labelInterpolationFnc: function (value) {
             return value[0];
           }
         }
@@ -152,6 +203,23 @@ export class ClientsDashboardComponent implements AfterViewInit, OnDestroy {
     ];
     this.websiteViewsChart = new Chartist.Bar('#websiteViewsChart', datawebsiteViewsChart, optionswebsiteViewsChart, responsiveOptions);
     this.startAnimationForBarChart(this.websiteViewsChart);
+
+    
+    const dataPieChart6: any = {
+      labels: ['unsatisfied_needs','changing_needs','high_pricing'],
+      series: this.cause
+    };
+  
+    const optionsPieChart6: any = {
+      width: '100%', // Adjust as needed
+      height: '200px', // Smaller height
+      chartPadding: 10, // Adjust padding
+      labelInterpolationFnc: function(value) {
+        return value;
+      }
+    };
+  
+    const pieChart = new Chartist.Pie('#websiteViewsChart6', dataPieChart6, optionsPieChart6);
   }
 
 

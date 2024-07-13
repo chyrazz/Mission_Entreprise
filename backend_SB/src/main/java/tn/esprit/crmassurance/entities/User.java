@@ -26,6 +26,9 @@ public class User implements Serializable {
     private String phoneNumber1;
     private String phoneNumber2;
     private Date creationdate;
+    private boolean conversion;
+    @Enumerated(EnumType.STRING)
+    private ECausesDisqualified cause;
 
     @OneToMany(mappedBy ="userCreateur" )
     private List<User> usercrees;
