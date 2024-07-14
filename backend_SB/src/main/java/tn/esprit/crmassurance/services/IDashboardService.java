@@ -16,4 +16,12 @@ public interface IDashboardService {
     public long getCauseDisqualified(ECausesDisqualified ed);
 
 
+    //Dashboard Contrats
+    public long getTotalContracts();
+    public long getTerminatedContracts();
+    public long getPendingContracts();
+    public long getTotalOpportunities();
+    public long getWonOpportunities();
+    public long getRejectedOpportunities();
+    public long getPendingOpportunities();
 }

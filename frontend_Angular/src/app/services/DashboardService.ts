@@ -1,6 +1,5 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { ECausesDisqualified } from "app/model/enums";
 import { EUserStatus } from "app/model/EUserStatus";
 import { User } from "app/model/User";
 import { Observable } from "rxjs";
@@ -36,4 +35,32 @@ export class DashboardService{
         return this.httpClient.get<number>(`${this.baseUrl}/causesDisqualified`, { params });
       }
 
+    getTotalContracts(): Observable<number> {
+        return this.httpClient.get<number>(`${this.baseUrl}/totalContracts`);
+      }
+
+    getTerminatedContracts(): Observable<number> {
+        return this.httpClient.get<number>(`${this.baseUrl}/terminatedContracts`);
+      }
+
+    getPendingContracts(): Observable<number> {
+        return this.httpClient.get<number>(`${this.baseUrl}/pendingContracts`);
+      }
+
+    getTotalOpportunities(): Observable<number> {
+        return this.httpClient.get<number>(`${this.baseUrl}/totalOpportunities`);
+      }
+    
+    getWonOpportunities(): Observable<number> {
+        return this.httpClient.get<number>(`${this.baseUrl}/wonOpportunities`);
+      }
+    
+    getRejectedOpportunities(): Observable<number> {
+        return this.httpClient.get<number>(`${this.baseUrl}/rejectedOpportunities`);
+      }
+    
+    getPendingOpportunities(): Observable<number> {
+        return this.httpClient.get<number>(`${this.baseUrl}/pendingOpportunities`);
+      }
+    
 }
