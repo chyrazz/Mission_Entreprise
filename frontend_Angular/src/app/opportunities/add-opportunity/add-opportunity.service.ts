@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { OpportunityUser } from '../opportunity-list-models';
+import { OpportunityUser } from '../opportunity-list/opportunity-list-models';
 
 @Injectable({
   providedIn: 'root'

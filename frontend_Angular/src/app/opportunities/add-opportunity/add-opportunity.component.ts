@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { OpportunityDetails, OpportunityUser } from '../opportunity-list-models';
 import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
 import { AddOpportunityService } from './add-opportunity.service';
-
+import {Guid} from 'guid-typescript'
+import { OpportunityDetails, OpportunityStatus, OpportunityUser } from '../opportunity-list/opportunity-list-models';
 @Component({
   selector: 'app-add-opportunity',
   templateUrl: './add-opportunity.component.html',
@@ -78,8 +78,7 @@ if(this.opportunityDetails){
   }
 
   onAddClick(){
-    let formValue : OpportunityDetails = new OpportunityDetails( this.descriptionCtrl.value,this.opportunityDetails? this.opportunityDetails.creationDate: (new Date()).toDateString(), this.closureDateCtrl.value, [], this.userCtrl.value, this.leadCtrl.value)
-    formValue.setId(this.opportunityDetails.id)
+    let formValue : OpportunityDetails = new OpportunityDetails(this.opportunityDetails? this.opportunityDetails.id: Guid.create().toString() ,  this.descriptionCtrl.value,this.opportunityDetails? this.opportunityDetails.creationDate: (new Date()).toDateString(), this.closureDateCtrl.value, [], this.userCtrl.value, this.leadCtrl.value,  OpportunityStatus.pending )
     this.dialogRef.close({
       formValue: formValue, 
       forUpdate: this.opportunityDetails? true : false

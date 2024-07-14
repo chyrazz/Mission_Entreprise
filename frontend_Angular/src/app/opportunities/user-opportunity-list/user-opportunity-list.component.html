@@ -1,14 +1,9 @@
 
 
-<div style="display: flex;justify-content: space-between;"> <opportunity-filters (searchEvent)="onSearchByDescription($event)"></opportunity-filters>
-  <div><button mat-raised-button color="primary" (click)="openDialog()">Ajouter</button>
-</div></div>
 <div style="width: 100%;height: calc(100vh - 220px);overflow-y: scroll;" >
    <mat-card  class="menu-container">
     <div class="justify-left-container">Description</div>
-    <div class="justify-left-container">Date de création</div>
     <div class="justify-left-container">Date de clôture</div>
-    <div class="justify-left-container">Utilisateur</div>
     <div class="justify-left-container">Lead</div>
     <div></div>
  
@@ -27,21 +22,17 @@
         <div class="justify-left-container" style="font-weight: 500; color: rgb(47, 46, 46);">
             {{opportunity.description}}
         </div>
-        <div class="justify-left-container">
-            {{opportunity.formattedCreationDate}}
-        </div>
+     
         <div class="justify-left-container">
             {{opportunity.formattedClosureDate}}
         </div>
-        <div class="justify-left-container">
-            {{opportunity.user.name}}
-        </div>
+      
         <div class="justify-left-container">
             {{opportunity.lead.name}}
         </div>
         <div style="display: flex; gap: 5px;">
-            <mat-icon style="color: rgb(86, 86, 237);" (click)="onUpdate(opportunity)">refresh</mat-icon>
-            <mat-icon style="color: rgb(239, 28, 25);" (click)="onDeleteOpportunity(opportunity)">delete</mat-icon>
+          <button *ngIf="opportunity.status== OpportunityStatus.pending" mat-raised-button color="primary"(click)="onAcceptOpportnity(opportunity.id)">Accepter</button>
+          <button *ngIf="opportunity.status== OpportunityStatus.pending" mat-raised-button color="warn" (click)="onDeclineOpportnity(opportunity.id)">Refuser</button>
         </div>
     </mat-card>
    </div>

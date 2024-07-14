@@ -1,0 +1,53 @@
+
+
+<div style="display: flex;justify-content: space-between;"> <opportunity-filters (searchEvent)="onSearchByDescription($event)"></opportunity-filters>
+  <div><button mat-raised-button color="primary" (click)="openDialog()">Ajouter</button>
+</div></div>
+<div style="width: 100%;height: calc(100vh - 220px);overflow-y: scroll;" >
+   <mat-card  class="menu-container">
+    <div class="justify-left-container">Description</div>
+    <div class="justify-left-container">Date de création</div>
+    <div class="justify-left-container">Date de clôture</div>
+    <div class="justify-left-container">Utilisateur</div>
+    <div class="justify-left-container">Lead</div>
+    <div></div>
+ 
+   </mat-card>
+   
+   <div *ngIf="isPending" style="width: 100%; display: flex; justify-content: center;">
+
+       <mat-spinner ></mat-spinner>
+   </div>
+   <div *ngIf="opportunityList.length==0 && !isPending" style="width: 100%; display: flex; justify-content: center; font-weight: 600;">
+    <span>Aucun résultat trouvé</span>
+</div>
+   
+   <div *ngIf="!isPending && opportunityList.length!=0">
+     <mat-card [ngClass]="{'hidden': !opportunity.displayed}" *ngFor="let opportunity of opportunityList" class="opp-card-container" >
+        <div class="justify-left-container" style="font-weight: 500; color: rgb(47, 46, 46);">
+            {{opportunity.description}}
+        </div>
+        <div class="justify-left-container">
+            {{opportunity.formattedCreationDate}}
+        </div>
+        <div class="justify-left-container">
+            {{opportunity.formattedClosureDate}}
+        </div>
+        <div class="justify-left-container">
+            {{opportunity.user.name}}
+        </div>
+        <div class="justify-left-container">
+            {{opportunity.lead.name}}
+        </div>
+        <div style="display: flex; gap: 5px;">
+            <mat-icon [matTooltipPosition]="'above'" [matTooltip]="opportunity.status|opportunityStatus"  style="color: rgb(250, 148, 64);"  *ngIf="opportunity.status == OpportunityStatus.pending">timer</mat-icon>
+            <mat-icon  [matTooltipPosition]="'above'"[matTooltip]="opportunity.status|opportunityStatus"  style="color: rgb(73, 232, 29);"  *ngIf="opportunity.status == OpportunityStatus.accepted">check_circle</mat-icon>
+            <mat-icon  [matTooltipPosition]="'above'"[matTooltip]="opportunity.status|opportunityStatus" style="color: rgb(239, 28, 25);"  *ngIf="opportunity.status == OpportunityStatus.declined">close</mat-icon>
+
+            <mat-icon style="color: rgb(86, 86, 237);" (click)="onUpdate(opportunity)">refresh</mat-icon>
+            <mat-icon style="color: rgb(239, 28, 25);" (click)="onDeleteOpportunity(opportunity)">delete</mat-icon>
+        </div>
+    </mat-card>
+   </div>
+  
+</div>
