@@ -10,10 +10,12 @@ import tn.esprit.crmassurance.repositories.OpporunityRepository;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class DashboardServiceImp implements IDashboardService{
+
 
     @Autowired
     private ContractRepository contractRepository;
@@ -25,6 +27,7 @@ public class DashboardServiceImp implements IDashboardService{
     private LeadRepository leadRepository;
 
 
+    //Dashboard Clients
     @Override
     public long getTotalClients() {
         return this.leadRepository.countByRole(ERole.Client);
@@ -50,4 +53,44 @@ public class DashboardServiceImp implements IDashboardService{
     public long getCauseDisqualified(ECausesDisqualified ed) {
         return this.leadRepository.countByRoleAndStatusAndCause(ERole.Lead, EUserStatus.Disqualified, ed);
     }
+
+
+    //Dashboard Contracts
+    @Override
+    public long getTotalContracts() {
+        return this.contractRepository.count();
+    }
+
+    @Override
+    public long getTerminatedContracts() {
+        return this.contractRepository.countTerminatedContracts();
+    }
+
+    @Override
+    public long getPendingContracts() {
+        return this.contractRepository.countPendingContracts();
+    }
+
+
+    @Override
+    public long getTotalOpportunities() {
+        return this.opporunityRepository.count();
+    }
+
+    @Override
+    public long getWonOpportunities() {
+        return this.opporunityRepository.countByOpp(ETypeOpportunity.won_opportunity);
+    }
+
+    @Override
+    public long getRejectedOpportunities() {
+        return this.opporunityRepository.countByOpp(ETypeOpportunity.rejected_opportunity);
+    }
+
+    @Override
+    public long getPendingOpportunities() {
+        return this.opporunityRepository.countByOpp(ETypeOpportunity.pending_opportunity);
+    }
+
+
 }
