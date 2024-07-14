@@ -1,5 +1,6 @@
-RoleId, name
-1, Agent_Support
-2, Admin
-3, Lead
-
+adr,email,lastname,name,role,status
+ben arous,25-11-2018,test@gmail.com,ok,ok,2345,134,Lead,En_attente
+ben arous,25-11-2018,test@gmail.com,ok,ok,2345,134,Lead,En_attente
+ben arous,25-11-2018,test@gmail.com,ok,ok,2345,134,Lead,En_attente
+ben arous,25-11-2018,test@gmail.com,ok,ok,2345,134,Lead,En_attente
+ben arous,25-11-2018,test@gmail.com,ok,ok,2345,134,Lead,En_attente

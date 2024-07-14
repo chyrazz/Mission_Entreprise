@@ -35,9 +35,11 @@ public class LeadController {
         @RequestMapping("/loadData")
        public void load() throws JobExecutionException {
             try {
-                Map<String, JobParameter> parametersMap = new HashMap<>();
-                parametersMap.put("timestamp", new JobParameter(System.currentTimeMillis()));
-                JobParameters jobParameters = new JobParameters("timestamp",parametersMap);
+
+                JobParameters jobParameters = new JobParametersBuilder()
+                        .addLong("time", System.currentTimeMillis())
+                        .toJobParameters();
+
                 JobExecution jobExecution = jobLauncher.run(job, jobParameters);
                 log.info("{}_{} was completed successfully", job.getName(), jobExecution.getId());
             } catch (Exception e) {
