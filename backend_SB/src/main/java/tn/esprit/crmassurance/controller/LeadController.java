@@ -5,14 +5,14 @@ import org.springframework.batch.core.*;
 
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import tn.esprit.crmassurance.entities.User;
 import tn.esprit.crmassurance.services.LeadServiceImpl;
 
-import java.util.HashMap;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -24,28 +24,33 @@ public class LeadController {
 
         private final JobLauncher jobLauncher;
 
+
         private final Job job;
         @Autowired
         public LeadController(JobLauncher jobLauncher, Job job) {
             this.jobLauncher = jobLauncher;
           this.job = job;
+
         }
 
 
-        @RequestMapping("/loadData")
-       public void load() throws JobExecutionException {
-            try {
+    @PostMapping("/upload")
+    public Object uploadFile(@RequestBody MultipartFile file) throws Exception {
 
-                JobParameters jobParameters = new JobParametersBuilder()
-                        .addLong("time", System.currentTimeMillis())
-                        .toJobParameters();
+        Path tempFile = Files.createTempFile("data", ".csv");
+        file.transferTo(tempFile.toFile());
+        // Set the file path in the job parameters
 
-                JobExecution jobExecution = jobLauncher.run(job, jobParameters);
-                log.info("{}_{} was completed successfully", job.getName(), jobExecution.getId());
-            } catch (Exception e) {
-                log.error("Encountered job execution exception!", e);
-            }
-        }
+        JobParameters parameters = new JobParametersBuilder()
+                .addString("inputFilePath", tempFile.toAbsolutePath().toString())
+                .addLong("timestamp", System.currentTimeMillis())
+                .toJobParameters();
+
+        // Run the job with the updated parameters
+        JobExecution jobExecution = jobLauncher.run(job, parameters);
+        // Clean up the temporary
+        return jobExecution.getStatus();
+    }
 
     @GetMapping("/Getlead/{id}")
     public User GetLeadByID(@PathVariable Long id)
