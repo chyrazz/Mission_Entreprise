@@ -111,6 +111,7 @@ Edit(item) {
         this.checkAndRenderChart();
       }
     );
+
   }
 
   private allDataLoaded(): boolean {

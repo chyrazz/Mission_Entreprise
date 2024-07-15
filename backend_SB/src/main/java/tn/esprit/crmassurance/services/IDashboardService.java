@@ -27,6 +27,8 @@ public interface IDashboardService {
     public long getRejectedOpportunities();
     public long getPendingOpportunities();
 
+    public long getOpportunitiesByCommercial();
+
     //Dashboard Support
     public long getTotalRequests();
     public long getProgressRequests();

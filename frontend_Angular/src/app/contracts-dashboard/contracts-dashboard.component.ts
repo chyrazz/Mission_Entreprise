@@ -20,6 +20,7 @@ export class ContractsDashboardComponent implements AfterViewInit, OnDestroy, On
   wonOpportunities: number =0;
   rejectedOpportunities: number =0;
   pendingOpportunities: number =0;
+  opportunitiesCount: number=0;
 
   constructor(private service: DashboardService) { }
 
@@ -55,6 +56,10 @@ export class ContractsDashboardComponent implements AfterViewInit, OnDestroy, On
       data => this.pendingOpportunities = data,
       error => console.error('There was an error!', error)
     );
+
+    this.service.getOpportunitiesByCommercial().subscribe((count) => {
+      this.opportunitiesCount = count;
+    });
   }
 
   

@@ -132,5 +132,10 @@ public class DashboardController {
         taskService.deleteTask(task);
     }
 
+    @GetMapping("/count-by-commercial")
+    public long getOpportunitiesByCommercial() {
+        return dashboardService.getOpportunitiesByCommercial();
+    }
+
 }
 
