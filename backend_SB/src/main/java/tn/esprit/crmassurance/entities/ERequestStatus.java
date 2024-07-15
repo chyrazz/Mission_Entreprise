@@ -6,5 +6,4 @@ public enum ERequestStatus {
     Resolved,
     Suspended,
     open
-
 }

@@ -63,4 +63,42 @@ export class DashboardService{
         return this.httpClient.get<number>(`${this.baseUrl}/pendingOpportunities`);
       }
     
+    getTotalRequests(): Observable<number> {
+        return this.httpClient.get<number>(`${this.baseUrl}/totalRequests`);
+      }
+    
+    getProgressRequests(): Observable<number> {
+        return this.httpClient.get<number>(`${this.baseUrl}/progressRequests`);
+      }
+    
+    getEscalatedRequests(): Observable<number> {
+        return this.httpClient.get<number>(`${this.baseUrl}/escalatedRequests`);
+      }
+    
+    getResolvedRequests(): Observable<number> {
+        return this.httpClient.get<number>(`${this.baseUrl}/resolvedRequests`);
+      }
+
+    getRequestsDistribution(type: string): Observable<number> {
+        let params = new HttpParams().set('type', type);
+        return this.httpClient.get<number>(`${this.baseUrl}/distribution`, { params });
+      }
+
+
+    getAllTasks(): Observable<any[]> {
+        return this.httpClient.get<any[]>(`${this.baseUrl}/getAll`)
+      }
+  
+    addTask(task:any) {
+        return this.httpClient.post(`${this.baseUrl}/addTask`,task)
+      }
+  
+    editTask(task:any) {
+        return this.httpClient.post(`${this.baseUrl}/tasks`,task)
+      }
+
+    deleteTask(id:any) {
+        return this.httpClient.delete(`${this.baseUrl}/tasks/${id}`)    
+  
+}
 }

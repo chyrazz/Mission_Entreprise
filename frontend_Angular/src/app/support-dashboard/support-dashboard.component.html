@@ -62,7 +62,7 @@
                 <i class="material-icons">book_online</i>
               </div>
               <p class="card-category">Total of Requests</p>
-              <h3 class="card-title">745</h3>
+              <h3 class="card-title">{{totalRequests}}</h3>
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@
                 <i class="material-icons">on_device_training</i>
               </div>
               <p class="card-category">Requests in progress</p>
-              <h3 class="card-title">158</h3>
+              <h3 class="card-title">{{progressRequests}}</h3>
             </div>
           </div>
         </div>
@@ -84,7 +84,7 @@
                 <i class="material-icons">rule_settings</i>
               </div>
               <p class="card-category">Escalated Requests</p>
-              <h3 class="card-title">60</h3>
+              <h3 class="card-title">{{escalatedRequests}}</h3>
             </div>
           </div>
         </div>
@@ -95,7 +95,7 @@
                 <i class="material-icons">mobile_friendly</i>
               </div>
               <p class="card-category">Resolved Requests</p>
-              <h3 class="card-title">210</h3>
+              <h3 class="card-title">{{resolvedRequests}}</h3>
             </div>
           </div>
         </div>
@@ -139,102 +139,48 @@
             <div class="card-body">
               <div class="tab-content">
                 <div class="tab-pane active">
+                  <div class="add-task mb-3">
+                    <input [(ngModel)]="newTaskDescription" placeholder="New task description" class="form-control" />
+                    <button mat-raised-button color="primary" (click)="addTask()" class="btn btn-primary mt-2">Add Task</button>
+                  </div>
                   <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Complete</th>
+                        <th>Description</th>
+                        <th class="text-right">Actions</th>
+                      </tr>
+                    </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                        <span class="form-check-sign">
-                                            <span class="check"></span>
-                                        </span>
-                                    </label>
-                                </div>
-                            </td>
-                            <td>Sign contract for "What are conference organizers afraid of?"</td>
-                            <td class="td-actions text-right">
-                                <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                    <i class="material-icons">edit</i>
-                                </button>
-                                <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                    <i class="material-icons">close</i>
-                                </button>
-                            </td>
-                        </tr>
-                        <!-- Repeat similar structure for other tasks -->
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <span class="form-check-sign">
-                                            <span class="check"></span>
-                                        </span>
-                                    </label>
-                                </div>
-                            </td>
-                            <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                            <td class="td-actions text-right">
-                                <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                    <i class="material-icons">edit</i>
-                                </button>
-                                <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                    <i class="material-icons">close</i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <span class="form-check-sign">
-                                            <span class="check"></span>
-                                        </span>
-                                    </label>
-                                </div>
-                            </td>
-                            <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit</td>
-                            <td class="td-actions text-right">
-                                <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                    <i class="material-icons">edit</i>
-                                </button>
-                                <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                    <i class="material-icons">close</i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                        <span class="form-check-sign">
-                                            <span class="check"></span>
-                                        </span>
-                                    </label>
-                                </div>
-                            </td>
-                            <td>Create 4 Invisible User Experiences you Never Knew About</td>
-                            <td class="td-actions text-right">
-                                <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                    <i class="material-icons">edit</i>
-                                </button>
-                                <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                    <i class="material-icons">close</i>
-                                </button>
-                            </td>
-                        </tr>
+                      <tr *ngFor="let item of taskSource">
+                        <td>
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input class="form-check-input" type="checkbox" value="" checked>
+                              <span class="form-check-sign">
+                                <span class="check"></span>
+                              </span>
+                            </label>
+                          </div>
+                        </td>
+                        <td>
+                          <input [(ngModel)]="item.description" [disabled]="item.id !== editingTaskId" class="form-control" />
+                        </td>
+                        <td class="td-actions text-right">
+                          <button mat-raised-button color="primary" (click)="editTask(item)" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-link btn-sm btn-just-icon">
+                            <i class="material-icons">edit</i>
+                          </button>
+                          <button mat-raised-button color="warn" (click)="deleteTask(item.id)" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-link btn-sm btn-just-icon">
+                            <i class="material-icons">close</i>
+                          </button>
+                        </td>
+                      </tr>
                     </tbody>
-                </table>
-
-                <div class="text-right mb-3">
-                    <button mat-raised-button type="button" matTooltip="Add Task" [matTooltipPosition]="'above'" class="btn btn-success">
-                        <i class="material-icons">add</i> Add Task
-                    </button>
+                  </table>
                 </div>
+              </div>
             </div>
-        </div>
+          </div>
+          
 </div>
   

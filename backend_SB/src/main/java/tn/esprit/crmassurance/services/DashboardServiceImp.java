@@ -1,17 +1,15 @@
 package tn.esprit.crmassurance.services;
 
+import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import tn.esprit.crmassurance.entities.*;
-import tn.esprit.crmassurance.repositories.ContractRepository;
-import tn.esprit.crmassurance.repositories.CustomerRequestRepository;
-import tn.esprit.crmassurance.repositories.LeadRepository;
-import tn.esprit.crmassurance.repositories.OpporunityRepository;
+import tn.esprit.crmassurance.repositories.*;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 @Service
 public class DashboardServiceImp implements IDashboardService{
@@ -41,7 +39,6 @@ public class DashboardServiceImp implements IDashboardService{
     @Override
     public long getLeadsByStatus(EUserStatus s) {
         return this.leadRepository.countByRoleAndStatus(ERole.Lead, s);
-
     }
 
     @Override
@@ -71,7 +68,6 @@ public class DashboardServiceImp implements IDashboardService{
         return this.contractRepository.countPendingContracts();
     }
 
-
     @Override
     public long getTotalOpportunities() {
         return this.opporunityRepository.count();
@@ -91,6 +87,43 @@ public class DashboardServiceImp implements IDashboardService{
     public long getPendingOpportunities() {
         return this.opporunityRepository.countByOpp(ETypeOpportunity.pending_opportunity);
     }
+
+    //Dashboard Support
+
+    @Override
+    public long getTotalRequests() {
+        return this.customerRequestRepository.count();
+    }
+
+    @Override
+    public long getProgressRequests() {
+        return this.customerRequestRepository.countByStatus(ERequestStatus.In_progress);
+    }
+
+    @Override
+    public long getEscalatedRequests() {
+        return this.customerRequestRepository.countByStatus(ERequestStatus.Escalated);
+    }
+
+    @Override
+    public long getResolvedRequests() {
+        return this.customerRequestRepository.countByStatus(ERequestStatus.Resolved);
+    }
+
+    /*
+    @Override
+    public long getRequestsDistribution() {
+        return this.customerRequestRepository.countByRequestType(ETypeRequest);
+    }
+*/
+    public long getRequestsDistribution() {
+        long incidentCount = customerRequestRepository.countByType(ETypeRequest.Incident);
+        long informationCount = customerRequestRepository.countByType(ETypeRequest.Information);
+        long claimCount = customerRequestRepository.countByType(ETypeRequest.Claim);
+
+        return incidentCount + informationCount + claimCount;
+    }
+
 
 
 }
