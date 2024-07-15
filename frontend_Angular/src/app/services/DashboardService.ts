@@ -101,4 +101,8 @@ export class DashboardService{
         return this.httpClient.delete(`${this.baseUrl}/tasks/${id}`)    
   
 }
+
+    getOpportunitiesByCommercial(): Observable<number> {
+      return this.httpClient.get<number>(this.baseUrl);
+}
 }

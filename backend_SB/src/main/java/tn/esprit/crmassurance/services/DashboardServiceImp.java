@@ -88,6 +88,11 @@ public class DashboardServiceImp implements IDashboardService{
         return this.opporunityRepository.countByOpp(ETypeOpportunity.pending_opportunity);
     }
 
+    @Override
+    public long getOpportunitiesByCommercial() {
+        return opporunityRepository.countOpportunitiesByCommercial();
+    }
+
     //Dashboard Support
 
     @Override
