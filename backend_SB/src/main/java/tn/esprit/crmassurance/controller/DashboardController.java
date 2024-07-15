@@ -1,15 +1,12 @@
 package tn.esprit.crmassurance.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.crmassurance.entities.ECausesDisqualified;
-import tn.esprit.crmassurance.entities.ERole;
-import tn.esprit.crmassurance.entities.ETypeOpportunity;
-import tn.esprit.crmassurance.entities.EUserStatus;
-import tn.esprit.crmassurance.services.ContractServiceImpl;
+import tn.esprit.crmassurance.entities.*;
 import tn.esprit.crmassurance.services.DashboardServiceImp;
-import tn.esprit.crmassurance.services.IDashboardService;
+import tn.esprit.crmassurance.services.TaskServiceImpl;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/dashboard")
@@ -18,14 +15,16 @@ public class DashboardController {
 
     @Autowired
     private DashboardServiceImp dashboardService;
+    @Autowired
+    private TaskServiceImpl taskService;
 
     @GetMapping("/totalClients")
-    public long getTotalClients(){
+    public long getTotalClients() {
         return dashboardService.getTotalClients();
     }
 
     @GetMapping("/totalLeads")
-    public long getTotalLeads(){
+    public long getTotalLeads() {
         return dashboardService.getTotalLeads();
     }
 
@@ -46,7 +45,9 @@ public class DashboardController {
 
 
     @GetMapping("/totalContracts")
-    public long getTotalContracts() { return dashboardService.getTotalContracts(); }
+    public long getTotalContracts() {
+        return dashboardService.getTotalContracts();
+    }
 
     @GetMapping("/terminatedContracts")
     public long getTerminatedContracts() {
@@ -79,6 +80,57 @@ public class DashboardController {
         return dashboardService.getPendingOpportunities();
     }
 
+    @GetMapping("/totalRequests")
+    public long getTotalRequests() {
+        return dashboardService.getTotalRequests();
+    }
+
+    @GetMapping("/progressRequests")
+    public long getProgressRequests() {
+        return dashboardService.getProgressRequests();
+    }
+
+    @GetMapping("/escalatedRequests")
+    public long getEscalatedRequests() {
+        return dashboardService.getEscalatedRequests();
+    }
+
+    @GetMapping("/resolvedRequests")
+    public long getResolvedRequests() {
+        return dashboardService.getResolvedRequests();
+    }
+
+    @GetMapping("/distribution")
+    public long getRequestsDistribution() {
+        return dashboardService.getRequestsDistribution();
+    }
+
+
+    @PostMapping("/addTask")
+    public TaskDashboard addTask(@RequestBody TaskDashboard task) {
+        TaskDashboard createdTask = taskService.addTask(task);
+        return createdTask;
+    }
+
+    @GetMapping("/getAll")
+    public List<TaskDashboard> getAllTasks() {
+        List<TaskDashboard> tasks = taskService.getTasks();
+        return tasks;
+    }
+
+    @PostMapping("/tasks")
+    public TaskDashboard updateTask(@RequestBody TaskDashboard task) {
+        TaskDashboard updatedTask = taskService.updateTask(task);
+        return updatedTask;
+
+    }
+
+    @DeleteMapping("/tasks/{id}")
+    public void deleteTask(@PathVariable Long id) {
+        TaskDashboard task = new TaskDashboard();
+        task.setId(id);
+        taskService.deleteTask(task);
+    }
 
 }
 
