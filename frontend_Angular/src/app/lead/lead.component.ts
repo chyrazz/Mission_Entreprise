@@ -75,7 +75,7 @@ export class LeadComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   
-
+  fileupload:File
 
   constructor(public snackBar: MatSnackBar,public dialog: MatDialog, 
     private route:Router,
@@ -148,6 +148,28 @@ export class LeadComponent implements AfterViewInit, OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(this.dialogContent);
   }
+
+  fileName=""
+  
+  selectFile(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file: File | null = input.files ? input.files[0] : null;
+
+    if (file) {
+        this.leadServices.pushFileToStorage(file).subscribe(res => {
+            this.show=true
+            this.dialog.closeAll()
+          this.getAllProducts();
+           
+        }, error => {
+            console.error('File upload failed', error);
+        });
+    } else {
+        console.error('No file selected');
+    }
+}
+
+
 }
 
 

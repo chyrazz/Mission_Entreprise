@@ -5,6 +5,8 @@ public enum ERole {
     Commerciale,
     Agent_Support,
     Client,
-    Lead
+    Lead;
+
+
 }
 

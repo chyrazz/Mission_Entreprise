@@ -20,6 +20,7 @@ import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.CustomMapEditor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -91,11 +92,12 @@ public class springBatchConfig {
         DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
         lineTokenizer.setDelimiter(",");
         lineTokenizer.setStrict(false);
-        lineTokenizer.setNames("adr","creationdate","email","lastname","name","phone_number1","phone_number2");
+        lineTokenizer.setNames("adr","creationdate","email","lastname","name","phone_number1","phone_number2","role","status");
 
         // Date parsing logic has been added
         CustomDateEditor customDateEditor = new CustomDateEditor(format, false);
         HashMap<Class, PropertyEditor> customEditors = new HashMap<>();
+
         customEditors.put(Date.class, customDateEditor);
 
 
