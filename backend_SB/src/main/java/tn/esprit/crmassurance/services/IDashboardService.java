@@ -1,11 +1,9 @@
 package tn.esprit.crmassurance.services;
 
-import org.hibernate.mapping.List;
 import tn.esprit.crmassurance.entities.ECausesDisqualified;
 import tn.esprit.crmassurance.entities.EUserStatus;
-import tn.esprit.crmassurance.entities.TaskDashboard;
 
-import java.util.Date;
+import java.util.List;
 
 public interface IDashboardService {
 
@@ -28,6 +26,7 @@ public interface IDashboardService {
     public long getPendingOpportunities();
 
     public long getOpportunitiesByCommercial();
+    public List<Float> getAllContractMontant();
 
     //Dashboard Support
     public long getTotalRequests();
