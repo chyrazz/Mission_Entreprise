@@ -21,6 +21,10 @@ export class DashboardService{
         return this.httpClient.get<number>(`${this.baseUrl}/totalLeads`);
       }
 
+    getConversionRate(): Observable<number> {
+        return this.httpClient.get<number>(`${this.baseUrl}/conversion-rate`);
+    }
+
     getLeadsByStatus(s: string): Observable<number> {
         let params = new HttpParams().set('s', s);
         return this.httpClient.get<number>(`${this.baseUrl}/leadsStatus`, { params });

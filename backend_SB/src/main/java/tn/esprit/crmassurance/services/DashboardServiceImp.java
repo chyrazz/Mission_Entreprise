@@ -37,6 +37,16 @@ public class DashboardServiceImp implements IDashboardService{
     }
 
     @Override
+    public double getConversionRate() {
+        long totalLeads = leadRepository.countTotalLeads();
+        if (totalLeads == 0) {
+            return 0.0;
+        }
+        long convertedClients = leadRepository.countConvertedClients();
+        return (double) convertedClients / totalLeads * 100;
+    }
+
+    @Override
     public long getLeadsByStatus(EUserStatus s) {
         return this.leadRepository.countByRoleAndStatus(ERole.Lead, s);
     }
@@ -115,12 +125,7 @@ public class DashboardServiceImp implements IDashboardService{
         return this.customerRequestRepository.countByStatus(ERequestStatus.Resolved);
     }
 
-    /*
-    @Override
-    public long getRequestsDistribution() {
-        return this.customerRequestRepository.countByRequestType(ETypeRequest);
-    }
-*/
+
     public long getRequestsDistribution() {
         long incidentCount = customerRequestRepository.countByType(ETypeRequest.Incident);
         long informationCount = customerRequestRepository.countByType(ETypeRequest.Information);

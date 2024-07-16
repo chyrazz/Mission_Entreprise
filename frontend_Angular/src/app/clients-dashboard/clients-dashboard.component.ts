@@ -21,6 +21,10 @@ export class ClientsDashboardComponent implements AfterViewInit, OnDestroy, OnIn
       this.totalLeads=res
     });
 
+    this.service.getConversionRate().subscribe(res => {
+      this.conversionRate = res + '%'; // Append '%' to the conversion rate
+    });
+
     this.service.getLeadsByStatus("Qualified").subscribe(res=>{
       this.leadsByStatus.push(res);
       this.service.getLeadsByStatus("Disqualified").subscribe(res2=>{
@@ -62,8 +66,10 @@ export class ClientsDashboardComponent implements AfterViewInit, OnDestroy, OnIn
   websiteViewsChart: any;
   totalClients: number = 0;
   totalLeads: number = 0;
+  conversionRate: string = ''; 
   leadsByStatus: number[] = [];
   cause : number[] = [];
+
 
   applyFilters() {
     // Logic to filter data based on selectedCategory and selectedDateRange
@@ -188,7 +194,7 @@ export class ClientsDashboardComponent implements AfterViewInit, OnDestroy, OnIn
         showGrid: false
       },
       low: 0,
-      high: 10,
+      high: 15,
       chartPadding: { top: 0, right: 5, bottom: 0, left: 0 }
     };
     const responsiveOptions: any[] = [
@@ -213,7 +219,7 @@ export class ClientsDashboardComponent implements AfterViewInit, OnDestroy, OnIn
     const optionsPieChart6: any = {
       width: '100%', // Adjust as needed
       height: '200px', // Smaller height
-      chartPadding: 10, // Adjust padding
+      chartPadding: 0, // Adjust padding
       labelInterpolationFnc: function(value) {
         return value;
       }

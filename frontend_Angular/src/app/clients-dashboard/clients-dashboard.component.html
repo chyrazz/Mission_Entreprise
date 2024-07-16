@@ -7,10 +7,8 @@
               <mat-label>Category</mat-label>
               <mat-select [(ngModel)]="selectedCategory">
                 <mat-option value="">All</mat-option>
-                <mat-option value="contracts">Contracts</mat-option>
-                <mat-option value="requests">Requests</mat-option>
-                <mat-option value="claims">Claims</mat-option>
-                <mat-option value="conversion">Conversion Rate</mat-option>
+                <mat-option value="contracts">Client</mat-option>
+                <mat-option value="requests">Lead</mat-option>
               </mat-select>
             </mat-form-field>
   
@@ -85,7 +83,7 @@
                 <i class="material-icons">trending_flat</i>
               </div>
               <p class="card-category">Conversion Rate</p>
-              <h3 class="card-title">87%</h3>
+              <h3 class="card-title">{{conversionRate}}</h3>
             </div>
           </div>
         </div>
