@@ -9,68 +9,38 @@ import Chartist from 'chartist';
   styleUrls: ['./support-dashboard.component.scss']
 })
 export class SupportDashboardComponent implements AfterViewInit, OnDestroy, OnInit {
-taskSource: any;
-Delete(id) {
-  this.service.deleteTask(id).subscribe(res => {
-    this.loadTaskData();
-  });
-}
-
-Edit(item) {
-  let addTache = new Tache()
-      addTache=item;
-
-      console.log(addTache);
-      this.service.addTask(addTache).subscribe(res => {
-        this.loadTaskData()
-      })
-}
-
 
   selectedCategory: string = '';
   selectedDateRange: string = '';
   RequestStatus: string = '';
   UserStatus: string = '';
-  websiteViewsChart3: any;
+  websiteViewsChart8: Chartist.IChartistPieChart;
   totalRequests: number = 0;
   progressRequests: number = 0;
   escalatedRequests: number = 0;
-  resolvedRequests: number = 0; 
+  resolvedRequests: number = 0;
   incidentCount: number = 0;
   informationCount: number = 0;
   claimCount: number = 0;
-  EditStatus: boolean=true;
-  id: number =0;
+  EditStatus: boolean = true;
+  id: number = 0;
   newTaskDescription: string = '';
+  taskSource: Tache[] = [];
 
-
-  constructor(private service: DashboardService) { } 
+  constructor(private service: DashboardService) {}
 
   ngOnInit(): void {
     this.loadData();
     this.loadTaskData();
-
-    console.log(this.taskSource);
   }
 
-  public loadTaskData(): void {
+  loadTaskData(): void {
     this.service.getAllTasks().subscribe(res => {
       this.taskSource = res;
     });
   }
 
-  addTask(){
-    const addTache = new Tache()
-    if (this.newTaskDescription!=null){
-      addTache.description=this.newTaskDescription;
-
-      this.service.addTask(addTache).subscribe(res => {
-        this.loadTaskData()
-      })
-    }
-  }
-
-  private loadData(): void {
+  loadData(): void {
     this.service.getTotalRequests().subscribe(res => {
       this.totalRequests = res;
       this.checkAndRenderChart();
@@ -91,47 +61,43 @@ Edit(item) {
       this.checkAndRenderChart();
     });
 
-    this.service.getRequestsDistribution('Incident').subscribe(
-      count => {
-        this.incidentCount = count;
-        this.checkAndRenderChart();
-      }
-    );
+    this.service.getRequestsDistribution('Incident').subscribe(count => {
+      this.incidentCount = count;
+      this.checkAndRenderChart();
+    });
 
-    this.service.getRequestsDistribution('Information').subscribe(
-      count => {
-        this.informationCount = count;
-        this.checkAndRenderChart();
-      }
-    );
+    this.service.getRequestsDistribution('Information').subscribe(count => {
+      this.informationCount = count;
+      this.checkAndRenderChart();
+    });
 
-    this.service.getRequestsDistribution('Claim').subscribe(
-      count => {
-        this.claimCount = count;
-        this.checkAndRenderChart();
-      }
-    );
-
+    this.service.getRequestsDistribution('Claim').subscribe(count => {
+      this.claimCount = count;
+      this.checkAndRenderChart();
+    });
   }
 
-  private allDataLoaded(): boolean {
-    return this.totalRequests !== 0 && this.progressRequests !== 0 && this.escalatedRequests !== 0 &&
-      this.resolvedRequests !== 0 && this.incidentCount !== 0 && this.informationCount !== 0 && this.claimCount !== 0;
+  allDataLoaded(): boolean {
+    return (
+      this.totalRequests !== 0 &&
+      this.progressRequests !== 0 &&
+      this.escalatedRequests !== 0 &&
+      this.resolvedRequests !== 0 &&
+      this.incidentCount !== 0 &&
+      this.informationCount !== 0 &&
+      this.claimCount !== 0
+    );
   }
 
-  private checkAndRenderChart(): void {
+  ngAfterViewInit(): void {
     if (this.allDataLoaded()) {
       this.renderChart();
     }
   }
 
-  ngAfterViewInit(): void {
-    this.renderChart();
-  }
-
   renderChart(): void {
     if (this.allDataLoaded()) {
-      const dataPieChart: any = {
+      const dataPieChart8 = {
         labels: ['Information', 'Claim', 'Incident'],
         series: [
           this.informationCount,
@@ -139,23 +105,26 @@ Edit(item) {
           this.incidentCount
         ]
       };
-    
-      const optionsPieChart: any = {
-        width: '100%', // Adjust as needed
-        height: '200px', // Smaller height
-        chartPadding: 10, // Adjust padding
-        labelInterpolationFnc: function(value) {
+  
+      console.log('Data for pie chart:', dataPieChart8); // Check data before chart creation
+  
+      const optionsPieChart8 = {
+        width: '100%',
+        height: '200px',
+        chartPadding: 10,
+        labelInterpolationFnc: function (value) {
           return value;
         }
       };
-    
-      const pieChart = new Chartist.Pie('#websiteViewsChart3', dataPieChart, optionsPieChart);
-      this.startAnimationForPieChart(pieChart);
+  
+      const pieChart8 = new Chartist.Pie('#websiteViewsChart8', dataPieChart8, optionsPieChart8);
+      this.startAnimationForPieChart(pieChart8);
     }
   }
+  
 
-  startAnimationForPieChart(chart) {
-    chart.on('draw', function(data) {
+  startAnimationForPieChart(chart: Chartist.IChartistPieChart): void {
+    chart.on('draw', function (data) {
       if (data.type === 'slice') {
         const angle = data.endAngle - data.startAngle;
         const percent = parseFloat((angle / (2 * Math.PI) * 100).toFixed(2));
@@ -166,13 +135,43 @@ Edit(item) {
     });
   }
 
-  applyFilters() {
-    // Logic to filter data based on selectedCategory and selectedDateRange
-  }
-
   ngOnDestroy(): void {
-    if (this.websiteViewsChart3) {
-      this.websiteViewsChart3.detach();
+    if (this.websiteViewsChart8) {
+      this.websiteViewsChart8.detach();
     }
   }
+
+  addTask(): void {
+    const addTache = new Tache();
+    if (this.newTaskDescription != null) {
+      addTache.description = this.newTaskDescription;
+
+      this.service.addTask(addTache).subscribe(res => {
+        this.loadTaskData();
+      });
+    }
+  }
+
+  deleteTask(id: number): void {
+    this.service.deleteTask(id).subscribe(res => {
+      this.loadTaskData();
+    });
+  }
+
+  editTask(task: Tache): void {
+    this.service.editTask(task).subscribe(res => {
+      this.loadTaskData();
+    });
+  }
+
+  private checkAndRenderChart(): void {
+    if (this.allDataLoaded()) {
+      this.renderChart();
+    }
+  }
+
+  applyFilters(): void {
+    // Implement filtering logic if needed
+  }
+
 }

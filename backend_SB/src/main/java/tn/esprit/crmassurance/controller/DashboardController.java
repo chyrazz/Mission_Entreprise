@@ -137,5 +137,10 @@ public class DashboardController {
         return dashboardService.getOpportunitiesByCommercial();
     }
 
+    @GetMapping("/conversion-rate")
+    public double getConversionRate() {
+        return dashboardService.getConversionRate();
+    }
+
 }
 
