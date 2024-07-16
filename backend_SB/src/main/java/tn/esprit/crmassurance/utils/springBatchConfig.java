@@ -25,6 +25,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.transaction.PlatformTransactionManager;
+import tn.esprit.crmassurance.entities.ERole;
 import tn.esprit.crmassurance.entities.User;
 
 import java.beans.PropertyEditor;
@@ -94,7 +95,6 @@ public class springBatchConfig {
 
         // Date parsing logic has been added
         CustomDateEditor customDateEditor = new CustomDateEditor(format, false);
-
         HashMap<Class, PropertyEditor> customEditors = new HashMap<>();
         customEditors.put(Date.class, customDateEditor);
 
