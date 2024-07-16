@@ -142,5 +142,10 @@ public class DashboardController {
         return dashboardService.getConversionRate();
     }
 
+    @GetMapping("/montant")
+    public List<Float> getAllContractMontant() {
+        return dashboardService.getAllContractMontant();
+    }
+
 }
 

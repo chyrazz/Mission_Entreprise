@@ -103,10 +103,16 @@ export class DashboardService{
 
     deleteTask(id:any) {
         return this.httpClient.delete(`${this.baseUrl}/tasks/${id}`)    
-  
-}
+      }
 
     getOpportunitiesByCommercial(): Observable<number> {
       return this.httpClient.get<number>(this.baseUrl);
-}
+      }
+
+    getAllContractMontant(): Observable<{id: number, montant: number}[]> {
+      return this.httpClient.get<{id: number, montant: number}[]>('your-api-endpoint');
+      }
+      
+
+
 }

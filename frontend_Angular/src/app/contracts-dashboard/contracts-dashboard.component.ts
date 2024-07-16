@@ -23,6 +23,8 @@ export class ContractsDashboardComponent implements AfterViewInit, OnDestroy, On
   rejectedOpportunities: number = 0;
   pendingOpportunities: number = 0;
   opportunitiesCount: number = 0;
+  contractData: {id: number, montant: number}[] = [];
+
 
   constructor(private service: DashboardService) { }
 
@@ -33,39 +35,64 @@ export class ContractsDashboardComponent implements AfterViewInit, OnDestroy, On
   private loadData(): void {
     this.service.getTotalContracts().subscribe(res => {
       this.totalContracts = res;
+      console.log('Total Contracts:', this.totalContracts);
     });
 
     this.service.getTerminatedContracts().subscribe(res => {
       this.terminatedContracts = res;
+      console.log('Terminated Contracts:', this.terminatedContracts);
     });
 
     this.service.getPendingContracts().subscribe(res => {
       this.pendingContracts = res;
+      console.log('Pending Contracts:', this.pendingContracts);
     });
 
     this.service.getTotalOpportunities().subscribe(
-      data => this.totalOpportunities = data,
+      data => {
+        this.totalOpportunities = data;
+        console.log('Total Opportunities:', this.totalOpportunities);
+      },
       error => console.error('There was an error!', error)
     );
 
     this.service.getWonOpportunities().subscribe(
-      data => this.wonOpportunities = data,
+      data => {
+        this.wonOpportunities = data;
+        console.log('Won Opportunities:', this.wonOpportunities);
+      },
       error => console.error('There was an error!', error)
     );
 
     this.service.getRejectedOpportunities().subscribe(
-      data => this.rejectedOpportunities = data,
+      data => {
+        this.rejectedOpportunities = data;
+        console.log('Rejected Opportunities:', this.rejectedOpportunities);
+      },
       error => console.error('There was an error!', error)
     );
 
     this.service.getPendingOpportunities().subscribe(
-      data => this.pendingOpportunities = data,
+      data => {
+        this.pendingOpportunities = data;
+        console.log('Pending Opportunities:', this.pendingOpportunities);
+      },
       error => console.error('There was an error!', error)
     );
 
     this.service.getOpportunitiesByCommercial().subscribe((count) => {
       this.opportunitiesCount = count;
+      console.log('Opportunities by Commercial:', this.opportunitiesCount);
     });
+
+    this.service.getAllContractMontant().subscribe(
+      data => {
+        this.contractData = data;
+        console.log('Contract Data:', this.contractData);
+        this.renderCompletedTasksChart(); // Call this after data is loaded
+      },
+      error => console.error('There was an error!', error)
+    );
   }
 
   ngAfterViewInit(): void {
@@ -101,24 +128,27 @@ export class ContractsDashboardComponent implements AfterViewInit, OnDestroy, On
 
   renderCompletedTasksChart(): void {
     const dataCompletedTasksChart: any = {
-      labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
-      series: [
-        [230, 750, 450, 300, 280, 240, 200, 190]
-      ]
+      labels: this.contractData.map(contract => `Contract ${contract.id}`),
+      series: [this.contractData.map(contract => contract.montant)]
     };
-
+  
+    console.log('Chart Data:', dataCompletedTasksChart); // Log chart data
+  
     const optionsCompletedTasksChart: any = {
       lineSmooth: Chartist.Interpolation.cardinal({
         tension: 0
       }),
       low: 0,
-      high: 1000,
+      high: Math.max(...this.contractData.map(contract => contract.montant)) + 10,
       chartPadding: { top: 0, right: 0, bottom: 0, left: 0 }
     };
-
+  
+    console.log('Chart Options:', optionsCompletedTasksChart); // Log chart options
+  
     this.completedTasksChart2 = new Chartist.Line('#completedTasksChart2', dataCompletedTasksChart, optionsCompletedTasksChart);
     this.startAnimationForLineChart(this.completedTasksChart2);
   }
+  
 
   renderWebsiteViewsChart(): void {
     const dataWebsiteViewsChart: any = {

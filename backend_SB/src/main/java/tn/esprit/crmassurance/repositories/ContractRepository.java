@@ -26,4 +26,7 @@ public interface ContractRepository extends JpaRepository<Contract,Long> {
 
     @Query("SELECT COUNT(c) FROM Contract c WHERE c.EndDate > CURRENT_DATE")
     long countPendingContracts();
+
+    @Query("SELECT c.montant FROM Contract c")
+    List<Float> findAllMontant();
 }

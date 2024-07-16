@@ -1,15 +1,11 @@
 package tn.esprit.crmassurance.services;
 
-import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 import tn.esprit.crmassurance.entities.*;
 import tn.esprit.crmassurance.repositories.*;
 
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Date;
+import java.util.List;
 
 @Service
 public class DashboardServiceImp implements IDashboardService{
@@ -100,7 +96,12 @@ public class DashboardServiceImp implements IDashboardService{
 
     @Override
     public long getOpportunitiesByCommercial() {
-        return opporunityRepository.countOpportunitiesByCommercial();
+        return this.opporunityRepository.countOpportunitiesByCommercial();
+    }
+
+    @Override
+    public List<Float> getAllContractMontant() {
+        return this.contractRepository.findAllMontant();
     }
 
     //Dashboard Support
