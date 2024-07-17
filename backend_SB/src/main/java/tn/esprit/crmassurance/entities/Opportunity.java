@@ -22,6 +22,10 @@ public class Opportunity implements Serializable {
     private Date createdDate;
     private Date closeDate;
 
+    @Enumerated(EnumType.STRING)
+    private ETypeOpportunity opp;
+
+
     @Lob
     private byte[] Attachment;
 

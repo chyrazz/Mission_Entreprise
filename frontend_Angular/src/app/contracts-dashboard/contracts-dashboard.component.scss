@@ -1,0 +1,29 @@
+ 
+  .filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filter-container mat-form-field {
+    flex: 1 1 150px;
+  }
+  
+  .filter-container button {
+    align-self: flex-end;
+    margin-top: -20px;
+    bottom: 30px;
+  }
+
+  .card-stats {
+    text-align: center;
+  }
+
+  .ct-chart {
+    height: 300px;
+  }
+  

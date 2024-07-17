@@ -7,7 +7,7 @@ import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
-import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
+import {MatNativeDateModule, MatRippleModule, NativeDateAdapter} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
@@ -28,11 +28,15 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
+import { OpportunityListModule } from 'app/opportunity-list/opportunity-list.module';
 import { CsvExportService } from 'app/services/CsvExportService';
 import { AddActivityComponent } from 'app/add-activity/add-activity.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {NativeDateAdapter} from '@angular/material/core';
 import { LeadDetailsComponent } from 'app/lead-details/lead-details.component';
+import { ClientsDashboardComponent } from 'app/clients-dashboard/clients-dashboard.component';
+import { SupportDashboardComponent } from 'app/support-dashboard/support-dashboard.component';
+import { ContractsDashboardComponent } from 'app/contracts-dashboard/contracts-dashboard.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   imports: [
@@ -56,8 +60,10 @@ import { LeadDetailsComponent } from 'app/lead-details/lead-details.component';
     MatCardModule,
     MatChipsModule,
     MatBadgeModule,
+    MatSnackBarModule, OpportunityListModule,
     MatSnackBarModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatTabsModule
   ],
   declarations: [
     DashboardComponent,
@@ -70,8 +76,11 @@ import { LeadDetailsComponent } from 'app/lead-details/lead-details.component';
     UsersComponent,
     LeadDetailsComponent,
     OpportunitiesComponent,
+    ClientsDashboardComponent,
+    SupportDashboardComponent,
+    ContractsDashboardComponent,
     AddActivityComponent,
-     OpportunitiesComponent,
+    OpportunitiesComponent,
   ],
   providers: [CsvExportService,NativeDateAdapter],
 

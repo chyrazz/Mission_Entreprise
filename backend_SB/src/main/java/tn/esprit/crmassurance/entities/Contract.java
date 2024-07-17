@@ -28,7 +28,7 @@ public class Contract implements Serializable {
     private String clauseParticuliers;
     private String Remarques;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
     private User client;
 
@@ -36,6 +36,6 @@ public class Contract implements Serializable {
     @JoinColumn(name = "representant_id", nullable = false)
     private User representant;
 
-    //test05
+    //test05*/
 }
 
