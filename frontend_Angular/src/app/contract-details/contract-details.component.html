@@ -1,0 +1,78 @@
+
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12" id="icons">
+                <i class="material-icons" routerLink="/contract">arrow_back</i>
+            </div>
+            
+            <div class="col-md-12">
+                <!-- Notification area -->
+                <div class="alert alert-{{statusNotif}}" *ngIf="show == true">
+                    <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="close()">
+                        <i class="material-icons">close</i>
+                    </button>
+                    <span>{{messageNotif}}</span>
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-warning">
+                        <h4 class="card-title">Contract Details:</h4>
+                        <p class="card-category">View Contract details</p>
+                    </div>
+                    <div class="card-body">
+                        <div id="details" class="col-md-12" *ngIf="contract">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Contract ID:</strong> {{ contract.contractId }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Montant:</strong> {{ contract.Montant | currency }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Couverts:</strong> {{ contract.couverts }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Clause Particuliers:</strong> {{ contract.clauseParticuliers }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Mode de Paiement:</strong> {{ contract.modeDePaiement }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Remarques:</strong> {{ contract.Remarques }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Start Date:</strong> {{ contract.startDate | date }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>End Date:</strong> {{ contract.endDate | date }}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-12" id="icons">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <a class="nav-link" (click)="goBack()">
+                                            <i class="material-icons">arrow_back</i>
+                                            <p>Back</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="!contract">
+                            <p>No contract details available.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

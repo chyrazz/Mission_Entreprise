@@ -1,0 +1,40 @@
+/* contract-details.component.css */
+.contract-details {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .contract-details h2 {
+    margin-top: 0;
+  }
+  
+  .contract-details p {
+    margin: 5px 0;
+  }
+  
+  .contract-details button {
+    margin-top: 20px;
+  }
+  
+  .alert {
+    margin-top: 20px;
+  }
+  
+  .card-header-warning {
+    background-color: #ff9800;
+    color: #fff;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .card-category {
+    margin: 0;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.62);
+  }
+  

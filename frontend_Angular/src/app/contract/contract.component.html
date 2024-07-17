@@ -1,21 +1,121 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
+             
+
+          <div class="input-container2">
+          
+            <button id="act" mat-button routerLink="/contractadd">+ Contract</button>
+            <div>
+              <mat-form-field>
+                <mat-label>Search</mat-label>
+                <input id="search" matInput (keyup)="contractSearch($event)" placeholder="Search Contract by ID" #input><i matSuffix class="material-icons">search</i>
+              </mat-form-field>
+            </div>
+             </div>
+            
+        
+
+             <div>
+              <button mat-icon-button [matMenuTriggerFor]="filterMenu">
+                  <mat-icon>filter_list</mat-icon>
+              </button>
+              <mat-menu #filterMenu="matMenu">
+                  <button mat-menu-item (click)="setFilterType('type')">Search by Type</button>
+                  <button mat-menu-item (click)="setFilterType('clause')">Search by Clause</button>
+              </mat-menu>
+          </div>
+          <div *ngIf="selectedFilter === 'type'">
+            <mat-form-field>
+                <mat-label>Search by Type</mat-label>
+                <input id="search-type" matInput (keyup)="contractSearchF($event, 'type')" placeholder="Search Contract by Type" #inputType>
+                <i matSuffix class="material-icons">search</i>
+            </mat-form-field>
+        </div>
+        <div *ngIf="selectedFilter === 'clause'">
+            <mat-form-field>
+                <mat-label>Search by Clause</mat-label>
+                <input id="search-clause" matInput (keyup)="contractSearchF($event, 'clause')" placeholder="Search Contract by Clause" #inputClause>
+                <i matSuffix class="material-icons">search</i>
+            </mat-form-field>
+        </div>
+    
 
 
-            <p>
-                Default appearance:
-                <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-                  <mat-button-toggle value="bold">Bold</mat-button-toggle>
-                  <mat-button-toggle value="italic">Italic</mat-button-toggle>
-                  <mat-button-toggle value="underline">Underline</mat-button-toggle>
-                </mat-button-toggle-group>
-              </p>
 
 
-              <mat-card appearance="outlined">
-                <mat-card-content>Simple card</mat-card-content>
-              </mat-card>
 
 
-        </div></div></div>
+
+         
+
+             
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header card-header-tabs card-header-primary custom-header-color">
+                  <h4 class="card-title ">List Of Contracts</h4>
+              </div>
+              <div class="card-body">
+                  <div class="table-responsive">
+
+
+
+                   
+                    <table mat-table [dataSource]="mysources"  matSort class="styled-table">
+
+                      <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef>Contract ID</th>
+                        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+                      </ng-container>
+                    
+                      <!-- EndDate Column --> 
+                      <ng-container matColumnDef="EndDate">
+                        <th mat-header-cell *matHeaderCellDef>End Date</th>
+                        <td mat-cell *matCellDef="let element">{{element.EndDate}}</td>
+                      </ng-container>
+                    
+                      <!-- couverts Column -->
+                      <ng-container matColumnDef="couverts">
+                        <th mat-header-cell *matHeaderCellDef>couverts</th>
+                        <td mat-cell *matCellDef="let element">{{element.couverts}}</td>
+                      </ng-container>
+                    
+                      <!-- clauseParticuliers -->
+                      <ng-container matColumnDef="clauseParticuliers">
+                        <th mat-header-cell *matHeaderCellDef>clause Particuliers</th>
+                        <td mat-cell *matCellDef="let element">
+                          <div class="cell-content">
+                          {{element.clauseParticuliers}}
+                          <button  mat-button class="modify-button" (click)="modify(element.id)">Modify</button>
+                          <button  mat-button class="modify-button" (click)="details(element.id)" >Show details </button>
+                          
+                          
+                        </div>
+                        </td>
+                      </ng-container>
+            
+                      
+               
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+                   
+              
+
+
+
+                  </div>
+
+                </div>
+                
+            </div>
+        </div>
+
+
+                 
+
+  
+    </div></div></div>
+           
+
+ 

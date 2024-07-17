@@ -33,6 +33,12 @@ import { CsvExportService } from 'app/services/CsvExportService';
 import { AddActivityComponent } from 'app/add-activity/add-activity.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { LeadDetailsComponent } from 'app/lead-details/lead-details.component';
+import { MatIconModule } from '@angular/material/icon';
+import { ContractaddComponent } from 'app/contractadd/contractadd.component';
+import { ContractModiyComponent } from 'app/contract-modiy/contract-modiy.component';
+import { ContractDetailsComponent } from 'app/contract-details/contract-details.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   imports: [
@@ -58,7 +64,9 @@ import { LeadDetailsComponent } from 'app/lead-details/lead-details.component';
     MatBadgeModule,
     MatSnackBarModule, OpportunityListModule,
     MatSnackBarModule,
-    MatDatepickerModule
+    MatIconModule,
+    MatDatepickerModule,
+    HttpClientModule
   ],
   declarations: [
     DashboardComponent,
@@ -73,6 +81,10 @@ import { LeadDetailsComponent } from 'app/lead-details/lead-details.component';
     OpportunitiesComponent,
     AddActivityComponent,
      OpportunitiesComponent,
+     ContractaddComponent,
+     ContractModiyComponent,
+      ContractDetailsComponent,
+    
   ],
   providers: [CsvExportService,NativeDateAdapter],
 

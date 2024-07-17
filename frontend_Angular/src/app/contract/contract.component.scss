@@ -1,0 +1,68 @@
+.cell-content {
+    display: flex;
+    justify-content: space-between; /* Aligne les éléments à l'extrémité des deux côtés */
+    align-items: center; /* Centre verticalement les éléments */
+  }
+  
+  .cell-content .modify-button {
+    margin-left: 10px; /* Marge entre les boutons */
+  }
+  
+  
+.row button{
+    background: green;
+    color: white;
+    font-weight: bold;
+    margin: 5px;
+}
+
+
+
+.input-container2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+
+.input-container2 div {
+ 
+  margin: 0;
+  flex: 1;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.input-container2 button {
+  margin-right: 10px; /* Espace entre l'input et l'icône */
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.styled-table th, .styled-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.styled-table th {
+    background-color: #f2f2f2;
+}
+
+.styled-table td {
+    min-width: 100px;
+}
+
+.styled-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}

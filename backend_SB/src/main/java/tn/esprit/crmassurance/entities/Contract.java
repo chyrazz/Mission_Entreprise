@@ -1,6 +1,7 @@
 package tn.esprit.crmassurance.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,8 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
+
 public class Contract implements Serializable {
 
     @Id
@@ -29,11 +32,11 @@ public class Contract implements Serializable {
     private String Remarques;
 
     @ManyToOne
-    @JoinColumn(name = "client_id", nullable = false)
+    @JoinColumn(name = "client_id")
     private User client;
 
     @ManyToOne
-    @JoinColumn(name = "representant_id", nullable = false)
+    @JoinColumn(name = "representant_id")
     private User representant;
 
     //test05
