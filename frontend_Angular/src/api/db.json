@@ -1,0 +1,52 @@
+{
+  "opportunities": [
+    {
+      "attachements": [],
+      "dateCloture": "2024-07-18T23:00:00.000Z",
+      "dateCreation": "Wed Jul 17 2024",
+      "description": "Opprtunité 1",
+      "id": 1,
+      "lead": {
+        "id": 1,
+        "name": "User 1"
+      },
+      "statut": "accepted",
+      "utilisateur": {
+        "id": 1,
+        "name": "User 1"
+      }
+    },
+    {
+      "attachements": [],
+      "dateCloture": "2024-07-19T23:00:00.000Z",
+      "dateCreation": "Wed Jul 17 2024",
+      "description": "opp OUssema",
+      "id": 2,
+      "lead": {
+        "id": 1,
+        "name": "User 1"
+      },
+      "statut": "declined",
+      "utilisateur": {
+        "id": 1,
+        "name": "User 1"
+      }
+    },
+    {
+      "attachements": [],
+      "dateCloture": "2024-07-17T23:00:00.000Z",
+      "dateCreation": "Wed Jul 17 2024",
+      "description": "Oussema test",
+      "id": 3,
+      "lead": {
+        "id": 1,
+        "name": "User 1"
+      },
+      "statut": "pending",
+      "utilisateur": {
+        "id": 1,
+        "name": "User 1"
+      }
+    }
+  ]
+}

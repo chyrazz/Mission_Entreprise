@@ -40,6 +40,10 @@
             {{opportunity.lead.name}}
         </div>
         <div style="display: flex; gap: 5px;">
+            <mat-icon [matTooltipPosition]="'above'" [matTooltip]="opportunity.status|opportunityStatus"  style="color: rgb(250, 148, 64);"  *ngIf="opportunity.status == OpportunityStatus.pending">timer</mat-icon>
+            <mat-icon  [matTooltipPosition]="'above'"[matTooltip]="opportunity.status|opportunityStatus"  style="color: rgb(73, 232, 29);"  *ngIf="opportunity.status == OpportunityStatus.accepted">check_circle</mat-icon>
+            <mat-icon  [matTooltipPosition]="'above'"[matTooltip]="opportunity.status|opportunityStatus" style="color: rgb(239, 28, 25);"  *ngIf="opportunity.status == OpportunityStatus.declined">close</mat-icon>
+
             <mat-icon style="color: rgb(86, 86, 237);" (click)="onUpdate(opportunity)">refresh</mat-icon>
             <mat-icon style="color: rgb(239, 28, 25);" (click)="onDeleteOpportunity(opportunity)">delete</mat-icon>
         </div>
