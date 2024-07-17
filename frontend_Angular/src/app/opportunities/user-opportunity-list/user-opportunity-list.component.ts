@@ -37,13 +37,15 @@ export class UserOpportunityListComponent implements OnInit {
     });
   }
 
-  onAcceptOpportnity(opportunityId : string){
-    this.opportunityListService.onAcceptOpportnity(opportunityId)
+  onAcceptOpportnity(opportunity : OpportunityDetails){
+    opportunity.acceptOpportunity()
+    this.opportunityListService.onAcceptOpportnity(opportunity)
   
     this.getOpportunities('')
   }
-  onDeclineOpportnity(opportunityId : string){
-    this.opportunityListService.onDeclineOpportnity(opportunityId)
+  onDeclineOpportnity(opportunity : OpportunityDetails){
+    opportunity.declineOpportunity()
+    this.opportunityListService.onDeclineOpportnity(opportunity)
     this.getOpportunities('')
   }
 }

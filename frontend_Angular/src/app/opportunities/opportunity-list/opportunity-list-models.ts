@@ -8,7 +8,7 @@ export class OpportunityDetails {
   
 
   constructor(
-   public id : string,
+   public id : number,
     public description: string,
     public creationDate: string,
     public closeDate: string,
@@ -34,7 +34,7 @@ export class OpportunityDetails {
   }
  
 
-  updateValues(id : string, description: string, closureDate: string, user: OpportunityUser, lead: OpportunityUser){
+  updateValues(id : number, description: string, closureDate: string, user: OpportunityUser, lead: OpportunityUser){
     this.id = id; 
     this.closeDate = closureDate; 
     this.user = user; 
@@ -67,4 +67,15 @@ export enum OpportunityStatus{
   pending = 'pending',
   accepted = 'accepted',
   declined = 'declined' 
+}
+
+export interface opprtunite{
+  id: number;
+  description: string;
+  dateCreation: string;
+  dateCloture: string;
+  attachements: Attachement[];
+  utilisateur: OpportunityUser;
+  lead: OpportunityUser;
+  statut: OpportunityStatus;
 }

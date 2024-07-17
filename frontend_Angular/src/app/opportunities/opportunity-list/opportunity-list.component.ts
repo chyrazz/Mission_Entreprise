@@ -28,16 +28,15 @@ isPending : boolean = false
     dialogRef.afterClosed().subscribe(result => {
 
       if (result) {
-      if(!result.forUpdate) this.opportunityList.unshift(result.formValue)
+      if(!result.forUpdate) this.opportunityListService.addOpportunity(result.formValue).subscribe((res)=>{this.getOpportunities('')})
       }
     });
   }
 
-
-  ngOnInit() {
-    this.searchEvent.pipe(debounceTime(500)).subscribe((value)=>{
+// exam test
+  ngOnInit() { 
+    this.searchEvent.pipe(debounceTime(5000)).subscribe((value)=>{
     this.getOpportunities(value)
-
     })
   this.getOpportunities('')
   }
@@ -52,7 +51,9 @@ isPending : boolean = false
   }
 
   onDeleteOpportunity(opportunity : OpportunityDetails){
-    opportunity.hide()
+    this.opportunityListService.deleteOpportunity(opportunity).subscribe((res)=>{
+      opportunity.hide()
+    })
   }
   onSearchByDescription(item: string) {
     this.searchEvent.next(item)
@@ -69,7 +70,7 @@ isPending : boolean = false
 
       if (result) {
       if(result.forUpdate ) {
-        this.opportunityListService.updateOpportunity(result.formValue)
+        this.opportunityListService.updateOpportunity(result.formValue).subscribe((res)=>{})
         this.getOpportunities('')
       }
       }

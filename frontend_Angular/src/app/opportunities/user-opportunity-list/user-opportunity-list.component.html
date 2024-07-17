@@ -31,8 +31,8 @@
             {{opportunity.lead.name}}
         </div>
         <div style="display: flex; gap: 5px;">
-          <button *ngIf="opportunity.status== OpportunityStatus.pending" mat-raised-button color="primary"(click)="onAcceptOpportnity(opportunity.id)">Accepter</button>
-          <button *ngIf="opportunity.status== OpportunityStatus.pending" mat-raised-button color="warn" (click)="onDeclineOpportnity(opportunity.id)">Refuser</button>
+          <button *ngIf="opportunity.status== OpportunityStatus.pending" mat-raised-button color="primary"(click)="onAcceptOpportnity(opportunity)">Accepter</button>
+          <button *ngIf="opportunity.status== OpportunityStatus.pending" mat-raised-button color="warn" (click)="onDeclineOpportnity(opportunity)">Refuser</button>
         </div>
     </mat-card>
    </div>

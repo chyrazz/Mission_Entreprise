@@ -78,7 +78,7 @@ if(this.opportunityDetails){
   }
 
   onAddClick(){
-    let formValue : OpportunityDetails = new OpportunityDetails(this.opportunityDetails? this.opportunityDetails.id: Guid.create().toString() ,  this.descriptionCtrl.value,this.opportunityDetails? this.opportunityDetails.creationDate: (new Date()).toDateString(), this.closureDateCtrl.value, [], this.userCtrl.value, this.leadCtrl.value,  OpportunityStatus.pending )
+    let formValue : OpportunityDetails = new OpportunityDetails(this.opportunityDetails? this.opportunityDetails.id: +Guid.create().toString() ,  this.descriptionCtrl.value,this.opportunityDetails? this.opportunityDetails.creationDate: (new Date()).toDateString(), this.closureDateCtrl.value, [], this.userCtrl.value, this.leadCtrl.value,  OpportunityStatus.pending )
     this.dialogRef.close({
       formValue: formValue, 
       forUpdate: this.opportunityDetails? true : false
