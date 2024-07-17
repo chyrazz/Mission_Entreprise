@@ -33,4 +33,5 @@ public class OpportunityController {
     public void updateOpportunity(@RequestBody Opportunity opportunity) {
         opportunityService.updateOpportunity(opportunity);
     }
+
 }

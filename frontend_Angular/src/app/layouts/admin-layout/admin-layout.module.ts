@@ -32,10 +32,17 @@ import { CsvExportService } from 'app/services/CsvExportService';
 import { AddActivityComponent } from 'app/add-activity/add-activity.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { LeadDetailsComponent } from 'app/lead-details/lead-details.component';
+
 import { OpportunityListModule } from 'app/opportunities/opportunity-list/opportunity-list.module';
 import { UserOpportunitiesComponent } from 'app/opportunities/user-opportunities/user-opportunities.component';
 import { OpportunityListService } from 'app/opportunities/opportunity-list/opportunity-list.service';
 import { UserOpportunityListService } from 'app/opportunities/user-opportunity-list/user-opportunity-list.service';
+
+import { ClientsDashboardComponent } from 'app/clients-dashboard/clients-dashboard.component';
+import { SupportDashboardComponent } from 'app/support-dashboard/support-dashboard.component';
+import { ContractsDashboardComponent } from 'app/contracts-dashboard/contracts-dashboard.component';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 @NgModule({
   imports: [
@@ -62,7 +69,8 @@ import { UserOpportunityListService } from 'app/opportunities/user-opportunity-l
     MatSnackBarModule, 
     OpportunityListModule,
     MatSnackBarModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatTabsModule
   ],
   declarations: [
     DashboardComponent,
@@ -75,7 +83,15 @@ import { UserOpportunityListService } from 'app/opportunities/user-opportunity-l
     UsersComponent,
     LeadDetailsComponent,
     OpportunitiesComponent,
+
     AddActivityComponent,UserOpportunitiesComponent
+
+    ClientsDashboardComponent,
+    SupportDashboardComponent,
+    ContractsDashboardComponent,
+    AddActivityComponent,
+    OpportunitiesComponent,
+
   ],
   providers: [CsvExportService,NativeDateAdapter, OpportunityListService, UserOpportunityListService],
 

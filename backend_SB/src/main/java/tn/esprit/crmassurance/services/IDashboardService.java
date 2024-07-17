@@ -1,29 +1,38 @@
 package tn.esprit.crmassurance.services;
 
+import tn.esprit.crmassurance.entities.ECausesDisqualified;
+import tn.esprit.crmassurance.entities.EUserStatus;
+
+import java.util.List;
+
 public interface IDashboardService {
 
-    //Dashboard Contrat
-    public int getTotalContrats();
-    //public int getContratsResilies();
-    //public int getContratsRenouveles();
-   // public int getContratsCreatedByMonth();
+    //Dashboard Clients
+    public long getTotalClients();
+    public long getTotalLeads();
+    public double getConversionRate();
+    public long getLeadsByStatus(EUserStatus s);
+    public long getClientsByMonth(int month);
+    public long getCauseDisqualified(ECausesDisqualified ed);
 
-    //Dashboard Lead+Client
-    //Add boolean attribute in order to implement this method
-    //public int getConversionRate();
+
+    //Dashboard Contrats
+    public long getTotalContracts();
+    public long getTerminatedContracts();
+    public long getPendingContracts();
+    public long getTotalOpportunities();
+    public long getWonOpportunities();
+    public long getRejectedOpportunities();
+    public long getPendingOpportunities();
+
+    public long getOpportunitiesByCommercial();
+    public List<Float> getAllContractMontant();
 
     //Dashboard Support
-    public int getRequestInProgress();
-    public int getRequestEscalated();
-    public int getRequestResolved();
-    public int getRequestSuspended();
-    public int getRequestOpen();
-    //à vérifier
-    //public int getRating();
-
-    //Dashboard Performance
-    public int getTicketsHandled();
-   // public int getContractsHandledByCommercial();
-    public int getOpportunitiesHandled();
+    public long getTotalRequests();
+    public long getProgressRequests();
+    public long getEscalatedRequests();
+    public long getResolvedRequests();
+    public long getRequestsDistribution();
 
 }

@@ -1,12 +1,12 @@
 package tn.esprit.crmassurance.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import tn.esprit.crmassurance.services.IDashboardService;
+import org.springframework.web.bind.annotation.*;
+import tn.esprit.crmassurance.entities.*;
+import tn.esprit.crmassurance.services.DashboardServiceImp;
+import tn.esprit.crmassurance.services.TaskServiceImpl;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/dashboard")
@@ -14,77 +14,138 @@ import tn.esprit.crmassurance.services.IDashboardService;
 public class DashboardController {
 
     @Autowired
-    private IDashboardService dashboardService;
+    private DashboardServiceImp dashboardService;
+    @Autowired
+    private TaskServiceImpl taskService;
 
-    @GetMapping("/total-contrats")
-    public ResponseEntity<Integer> getTotalContrats() {
-        int totalContrats = dashboardService.getTotalContrats();
-        return ResponseEntity.ok(totalContrats);
-    }
-/*
-    @GetMapping("/contrats-resilies")
-    public ResponseEntity<Integer> getContratsResilies() {
-        int contratsResilies = dashboardService.getContratsResilies();
-        return ResponseEntity.ok(contratsResilies);
+    @GetMapping("/totalClients")
+    public long getTotalClients() {
+        return dashboardService.getTotalClients();
     }
 
-    @GetMapping("/contrats-renouveles")
-    public ResponseEntity<Integer> getContratsRenouveles() {
-        int contratsRenouveles = dashboardService.getContratsRenouveles();
-        return ResponseEntity.ok(contratsRenouveles);
+    @GetMapping("/totalLeads")
+    public long getTotalLeads() {
+        return dashboardService.getTotalLeads();
     }
 
-    @GetMapping("/contrats-created-by-month")
-    public ResponseEntity<Integer> getContratsCreatedByMonth() {
-        int contratsCreatedByMonth = dashboardService.getContratsCreatedByMonth();
-        return ResponseEntity.ok(contratsCreatedByMonth);
-    }
-*/
-    @GetMapping("/requests-in-progress")
-    public ResponseEntity<Integer> getRequestInProgress() {
-        int requestsInProgress = dashboardService.getRequestInProgress();
-        return ResponseEntity.ok(requestsInProgress);
+    @GetMapping("/leadsStatus")
+    public long getLeadsByStatus(@RequestParam EUserStatus s) {
+        return dashboardService.getLeadsByStatus(s);
     }
 
-    @GetMapping("/requests-escalated")
-    public ResponseEntity<Integer> getRequestEscalated() {
-        int requestsEscalated = dashboardService.getRequestEscalated();
-        return ResponseEntity.ok(requestsEscalated);
+    @GetMapping("/clientsMonth/{month}")
+    public long getClientsByMonth(@PathVariable int month) {
+        return dashboardService.getClientsByMonth(month);
     }
 
-    @GetMapping("/requests-resolved")
-    public ResponseEntity<Integer> getRequestResolved() {
-        int requestsResolved = dashboardService.getRequestResolved();
-        return ResponseEntity.ok(requestsResolved);
+    @GetMapping("/causesDisqualified")
+    public long getCauseDisqualified(@RequestParam ECausesDisqualified ed) {
+        return dashboardService.getCauseDisqualified(ed);
     }
 
-    @GetMapping("/requests-suspended")
-    public ResponseEntity<Integer> getRequestSuspended() {
-        int requestsSuspended = dashboardService.getRequestSuspended();
-        return ResponseEntity.ok(requestsSuspended);
+
+    @GetMapping("/totalContracts")
+    public long getTotalContracts() {
+        return dashboardService.getTotalContracts();
     }
 
-    @GetMapping("/requests-open")
-    public ResponseEntity<Integer> getRequestOpen() {
-        int requestsOpen = dashboardService.getRequestOpen();
-        return ResponseEntity.ok(requestsOpen);
+    @GetMapping("/terminatedContracts")
+    public long getTerminatedContracts() {
+        return dashboardService.getTerminatedContracts();
     }
 
-    @GetMapping("/tickets-handled")
-    public ResponseEntity<Integer> getTicketsHandled() {
-        int ticketsHandled = dashboardService.getTicketsHandled();
-        return ResponseEntity.ok(ticketsHandled);
+    @GetMapping("/pendingContracts")
+    public long getPendingContracts() {
+        return dashboardService.getPendingContracts();
     }
-/*
-    @GetMapping("/contracts-handled-commercial")
-    public ResponseEntity<Integer> getContractsHandledByCommercial() {
-        int contractsHandledByCommercial = dashboardService.getContractsHandledByCommercial();
-        return ResponseEntity.ok(contractsHandledByCommercial);
+
+    @GetMapping("/totalOpportunities")
+    public long getTotalOpportunities() {
+        return dashboardService.getTotalOpportunities();
     }
-*/
-    @GetMapping("/opportunities-handled")
-    public ResponseEntity<Integer> getOpportunitiesHandled() {
-        int opportunitiesHandled = dashboardService.getOpportunitiesHandled();
-        return ResponseEntity.ok(opportunitiesHandled);
+
+
+    @GetMapping("/wonOpportunities")
+    public long getWonOpportunities() {
+        return dashboardService.getWonOpportunities();
     }
+
+    @GetMapping("/rejectedOpportunities")
+    public long getRejectedOpportunities() {
+        return dashboardService.getRejectedOpportunities();
+    }
+
+    @GetMapping("/pendingOpportunities")
+    public long getPendingOpportunities() {
+        return dashboardService.getPendingOpportunities();
+    }
+
+    @GetMapping("/totalRequests")
+    public long getTotalRequests() {
+        return dashboardService.getTotalRequests();
+    }
+
+    @GetMapping("/progressRequests")
+    public long getProgressRequests() {
+        return dashboardService.getProgressRequests();
+    }
+
+    @GetMapping("/escalatedRequests")
+    public long getEscalatedRequests() {
+        return dashboardService.getEscalatedRequests();
+    }
+
+    @GetMapping("/resolvedRequests")
+    public long getResolvedRequests() {
+        return dashboardService.getResolvedRequests();
+    }
+
+    @GetMapping("/distribution")
+    public long getRequestsDistribution() {
+        return dashboardService.getRequestsDistribution();
+    }
+
+
+    @PostMapping("/addTask")
+    public TaskDashboard addTask(@RequestBody TaskDashboard task) {
+        TaskDashboard createdTask = taskService.addTask(task);
+        return createdTask;
+    }
+
+    @GetMapping("/getAll")
+    public List<TaskDashboard> getAllTasks() {
+        List<TaskDashboard> tasks = taskService.getTasks();
+        return tasks;
+    }
+
+    @PostMapping("/tasks")
+    public TaskDashboard updateTask(@RequestBody TaskDashboard task) {
+        TaskDashboard updatedTask = taskService.updateTask(task);
+        return updatedTask;
+
+    }
+
+    @DeleteMapping("/tasks/{id}")
+    public void deleteTask(@PathVariable Long id) {
+        TaskDashboard task = new TaskDashboard();
+        task.setId(id);
+        taskService.deleteTask(task);
+    }
+
+    @GetMapping("/count-by-commercial")
+    public long getOpportunitiesByCommercial() {
+        return dashboardService.getOpportunitiesByCommercial();
+    }
+
+    @GetMapping("/conversion-rate")
+    public double getConversionRate() {
+        return dashboardService.getConversionRate();
+    }
+
+    @GetMapping("/montant")
+    public List<Float> getAllContractMontant() {
+        return dashboardService.getAllContractMontant();
+    }
+
 }
+

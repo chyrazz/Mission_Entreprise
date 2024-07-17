@@ -3,16 +3,13 @@ package tn.esprit.crmassurance.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.crmassurance.entities.*;
-import tn.esprit.crmassurance.repositories.ContractRepository;
-import tn.esprit.crmassurance.repositories.CustomerRequestRepository;
-import tn.esprit.crmassurance.repositories.OpporunityRepository;
+import tn.esprit.crmassurance.repositories.*;
 
-import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class DashboardServiceImp implements IDashboardService{
+
 
     @Autowired
     private ContractRepository contractRepository;
@@ -20,82 +17,124 @@ public class DashboardServiceImp implements IDashboardService{
     private CustomerRequestRepository customerRequestRepository;
     @Autowired
     private OpporunityRepository opporunityRepository;
+    @Autowired
+    private LeadRepository leadRepository;
 
+
+    //Dashboard Clients
     @Override
-    public int getTotalContrats() {
-        return contractRepository.findAll().size();
-    }
-/*
-    @Override
-    public int getContratsResilies() {
-        LocalDate startDate = LocalDate.of(LocalDate.now().getYear(), 1, 1);
-        LocalDate endDate = LocalDate.now();
-        List<Contract> contracts = contractRepository.findByEndDateBetween(java.sql.Date.valueOf(startDate), java.sql.Date.valueOf(endDate));
-        return contracts.size();
+    public long getTotalClients() {
+        return this.leadRepository.countByRole(ERole.Client);
     }
 
     @Override
-    public int getContratsRenouveles() {
-        LocalDate startDate = LocalDate.of(LocalDate.now().getYear(), 1, 1);
-        LocalDate endDate = LocalDate.now();
-        List<Contract> contracts = contractRepository.findByEndDateBetween(java.sql.Date.valueOf(startDate), java.sql.Date.valueOf(endDate));
-        return contracts.size();
+    public long getTotalLeads() {
+        return this.leadRepository.countByRole(ERole.Lead);
     }
 
     @Override
-    public int getContratsCreatedByMonth() {
-        LocalDate startDate = LocalDate.now().withDayOfMonth(1);
-        LocalDate endDate = LocalDate.now().plusMonths(1).withDayOfMonth(1).minusDays(1);
-        List<Contract> contracts = contractRepository.findByStartDateBetween(java.sql.Date.valueOf(startDate), java.sql.Date.valueOf(endDate));
-        return contracts.size();
-    }
-*/
-
-    @Override
-    public int getRequestInProgress() {
-        List<CustomerRequest> requestsInProgress = customerRequestRepository.findByStatus(ERequestStatus.In_progress);
-        return requestsInProgress.size();
+    public double getConversionRate() {
+        long totalLeads = leadRepository.countTotalLeads();
+        if (totalLeads == 0) {
+            return 0.0;
+        }
+        long convertedClients = leadRepository.countConvertedClients();
+        return (double) convertedClients / totalLeads * 100;
     }
 
     @Override
-    public int getRequestEscalated() {
-        List<CustomerRequest> requestsEscalated = customerRequestRepository.findByStatus(ERequestStatus.Escalated);
-        return requestsEscalated.size();
+    public long getLeadsByStatus(EUserStatus s) {
+        return this.leadRepository.countByRoleAndStatus(ERole.Lead, s);
     }
 
     @Override
-    public int getRequestResolved() {
-        List<CustomerRequest> requestsResolved = customerRequestRepository.findByStatus(ERequestStatus.Resolved);
-        return requestsResolved.size();
+    public long getClientsByMonth(int month) {
+        return 0;
     }
 
     @Override
-    public int getRequestSuspended() {
-        List<CustomerRequest> requestsSuspended = customerRequestRepository.findByStatus(ERequestStatus.Suspended);
-        return requestsSuspended.size();
+    public long getCauseDisqualified(ECausesDisqualified ed) {
+        return this.leadRepository.countByRoleAndStatusAndCause(ERole.Lead, EUserStatus.Disqualified, ed);
+    }
+
+
+    //Dashboard Contracts
+    @Override
+    public long getTotalContracts() {
+        return this.contractRepository.count();
     }
 
     @Override
-    public int getRequestOpen() {
-        List<CustomerRequest> requestsOpen = customerRequestRepository.findByStatus(ERequestStatus.open);
-        return requestsOpen.size();
+    public long getTerminatedContracts() {
+        return this.contractRepository.countTerminatedContracts();
     }
 
     @Override
-    public int getTicketsHandled() {
-        List<CustomerRequest> ticketsHandled = customerRequestRepository.findByTypeIn(Arrays.asList(ETypeRequest.Claim, ETypeRequest.Incident));
-        return ticketsHandled.size();
+    public long getPendingContracts() {
+        return this.contractRepository.countPendingContracts();
     }
-/*
+
     @Override
-    public int getContractsHandledByCommercial() {
-        List<Contract> contractsHandled = contractRepository.findByRepresentantCommercial();
-        return contractsHandled.size();
+    public long getTotalOpportunities() {
+        return this.opporunityRepository.count();
     }
-*/
+
     @Override
-    public int getOpportunitiesHandled() {
-        List<Opportunity> opportunitiesHandled = opporunityRepository.findAll();
-        return opportunitiesHandled.size();
+    public long getWonOpportunities() {
+        return this.opporunityRepository.countByOpp(ETypeOpportunity.won_opportunity);
     }
+
+    @Override
+    public long getRejectedOpportunities() {
+        return this.opporunityRepository.countByOpp(ETypeOpportunity.rejected_opportunity);
+    }
+
+    @Override
+    public long getPendingOpportunities() {
+        return this.opporunityRepository.countByOpp(ETypeOpportunity.pending_opportunity);
+    }
+
+    @Override
+    public long getOpportunitiesByCommercial() {
+        return this.opporunityRepository.countOpportunitiesByCommercial();
+    }
+
+    @Override
+    public List<Float> getAllContractMontant() {
+        return this.contractRepository.findAllMontant();
+    }
+
+    //Dashboard Support
+
+    @Override
+    public long getTotalRequests() {
+        return this.customerRequestRepository.count();
+    }
+
+    @Override
+    public long getProgressRequests() {
+        return this.customerRequestRepository.countByStatus(ERequestStatus.In_progress);
+    }
+
+    @Override
+    public long getEscalatedRequests() {
+        return this.customerRequestRepository.countByStatus(ERequestStatus.Escalated);
+    }
+
+    @Override
+    public long getResolvedRequests() {
+        return this.customerRequestRepository.countByStatus(ERequestStatus.Resolved);
+    }
+
+
+    public long getRequestsDistribution() {
+        long incidentCount = customerRequestRepository.countByType(ETypeRequest.Incident);
+        long informationCount = customerRequestRepository.countByType(ETypeRequest.Information);
+        long claimCount = customerRequestRepository.countByType(ETypeRequest.Claim);
+
+        return incidentCount + informationCount + claimCount;
+    }
+
+
+
 }

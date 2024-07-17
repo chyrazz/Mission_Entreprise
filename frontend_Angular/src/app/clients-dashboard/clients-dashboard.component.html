@@ -1,0 +1,152 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="filter-container">
+            <mat-form-field appearance="fill">
+              <mat-label>Category</mat-label>
+              <mat-select [(ngModel)]="selectedCategory">
+                <mat-option value="">All</mat-option>
+                <mat-option value="contracts">Client</mat-option>
+                <mat-option value="requests">Lead</mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <mat-form-field appearance="fill">
+              <mat-label>Date Range</mat-label>
+              <mat-select [(ngModel)]="selectedDateRange">
+                <mat-option value="">All</mat-option>
+                <mat-option value="monthly">Per Month</mat-option>
+                <mat-option value="quarterly">Per Quarter</mat-option>
+                <mat-option value="yearly">Per Year</mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <mat-form-field appearance="fill">
+              <mat-label>Request Status</mat-label>
+              <mat-select [(ngModel)]="RequestStatus">
+                <mat-option value="">All</mat-option>
+                <mat-option value="progress">In progress</mat-option>
+                <mat-option value="escalated">Escalated</mat-option>
+                <mat-option value="resolved">Resolved</mat-option>
+                <mat-option value="suspended">Suspended</mat-option>
+                <mat-option value="open">Open</mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <mat-form-field appearance="fill">
+              <mat-label>User Status</mat-label>
+              <mat-select [(ngModel)]="UserStatus">
+                <mat-option value="">All</mat-option>
+                <mat-option value="active">Active</mat-option>
+                <mat-option value="inactive">Inactive</mat-option>
+                <mat-option value="qualified">Qualified</mat-option>
+                <mat-option value="disqualified">Disqualified</mat-option>
+                <mat-option value="attente">En attente</mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <button mat-raised-button (click)="applyFilters()">Apply Filters</button>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4">
+          <div class="card card-stats">
+            <div class="card-header card-header-info card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">diversity_3</i>
+              </div>
+              <p class="card-category">Total Clients</p>
+              <h3 class="card-title">{{totalClients}}</h3>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-lg-4 col-md-4">
+          <div class="card card-stats">
+            <div class="card-header card-header-info card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">transcribe</i>
+              </div>
+              <p class="card-category">Total Leads</p>
+              <h3 class="card-title">{{totalLeads}}</h3>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-lg-4 col-md-4">
+          <div class="card card-stats">
+            <div class="card-header card-header-info card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">trending_flat</i>
+              </div>
+              <p class="card-category">Conversion Rate</p>
+              <h3 class="card-title">{{conversionRate}}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row">
+        
+        <div class="col-md-4">
+          <div class="card card-chart">
+            <div class="card-header card-header">
+              <div class="ct-chart" id="websiteViewsChart"></div>
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Distribution of Leads by Status</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card card-chart">
+            <div class="card-header card-header">
+              <div class="ct-chart" id="completedTasksChart"></div>
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Client Acquisition Trends</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card card-chart">
+              <div class="card-header">
+                <div class="ct-chart" id="websiteViewsChart6"></div>
+              </div>
+              <div class="card-body">
+                <h4 class="card-title">Reasons for Lead Non-Conversion</h4>
+              </div>
+            </div>
+          </div>
+
+      </div>
+  
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header card-header-warning">
+              <h4 class="card-title">Commercials' Performance</h4>
+            </div>
+            <div class="card-body table-responsive">
+              <table class="table table-hover">
+                <thead class="text-warning">
+                  <tr>
+                    <th>ID</th>
+                    <th>Commercial</th>
+                    <th>Number of Clients</th>
+                    <th>Number of Leads</th>
+                    <th>Leads Converted to Clients</th>
+                  </tr>
+                </thead>
+                
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

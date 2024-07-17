@@ -1,0 +1,180 @@
+<div class="main-content">
+    <div class="container-fluid">
+  
+  
+      <div class="row">
+          <div class="col-lg-12">
+            <div class="filter-container">
+              <mat-form-field appearance="fill">
+                <mat-label>Category</mat-label>
+                <mat-select [(ngModel)]="selectedCategory">
+                  <mat-option value="">All</mat-option>
+                  <mat-option value="contracts">Client</mat-option>
+                  <mat-option value="requests">Lead</mat-option>
+
+                </mat-select>
+              </mat-form-field>
+      
+              <mat-form-field appearance="fill">
+                <mat-label>Date Range</mat-label>
+                <mat-select [(ngModel)]="selectedDateRange">
+                  <mat-option value="">All</mat-option>
+                  <mat-option value="monthly">Per Month</mat-option>
+                  <mat-option value="quarterly">Per Quarter</mat-option>
+                  <mat-option value="yearly">Per Year</mat-option>
+                </mat-select>
+              </mat-form-field>
+    
+              <mat-form-field appearance="fill">
+                <mat-label>Request Status</mat-label>
+                <mat-select [(ngModel)]="RequestStatus">
+                  <mat-option value="">All</mat-option>
+                  <mat-option value="progress">In progress</mat-option>
+                  <mat-option value="escalated">Escalated</mat-option>
+                  <mat-option value="resolved">Resolved</mat-option>
+                  <mat-option value="suspended">Suspended</mat-option>
+                  <mat-option value="open">Open</mat-option>
+                </mat-select>
+              </mat-form-field>
+    
+              <mat-form-field appearance="fill">
+                <mat-label>User Status</mat-label>
+                <mat-select [(ngModel)]="UserStatus">
+                  <mat-option value="">All</mat-option>
+                  <mat-option value="active">Active</mat-option>
+                  <mat-option value="inactive">Inactive</mat-option>
+                  <mat-option value="qualified">Qualified</mat-option>
+                  <mat-option value="disqualified">Disqualified</mat-option>
+                  <mat-option value="attente">En attente</mat-option>
+                </mat-select>
+              </mat-form-field>
+  
+  
+    
+              <button mat-raised-button (click)="applyFilters()">Apply Filters</button>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+  
+  
+        <div class="row">
+            <div class="col-lg-4 col-md-4"> <!-- Premier KPI -->
+                <div class="card card-stats">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">library_books</i>
+                        </div>
+                        <p class="card-category">Total of Contracts</p>
+                        <h3 class="card-title">{{totalContracts}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4"> <!-- Deuxième KPI -->
+                <div class="card card-stats">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">no_backpack</i>
+                        </div>
+                        <p class="card-category">Terminated Contracts</p>
+                        <h3 class="card-title">{{terminatedContracts}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4"> <!-- Troisième KPI -->
+                <div class="card card-stats">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">bookmark_add</i>
+                        </div>
+                        <p class="card-category">Pending Contracts</p>
+                        <h3 class="card-title">{{pendingContracts}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-3 col-md-3"> <!-- Quatrième KPI -->
+                <div class="card card-stats">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">density_small</i>
+                        </div>
+                        <p class="card-category">Total Opportunities</p>
+                        <h3 class="card-title">{{totalOpportunities}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3"> <!-- Cinquième KPI -->
+                <div class="card card-stats">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">bookmark_added</i>
+                        </div>
+                        <p class="card-category">Won Opportunities</p>
+                        <h3 class="card-title">{{wonOpportunities}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3"> <!-- Sixième KPI -->
+                <div class="card card-stats">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">filter_list_off</i>
+                        </div>
+                        <p class="card-category">Rejected Opportunities</p>
+                        <h3 class="card-title">{{rejectedOpportunities}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3"> <!-- Septième KPI -->
+                <div class="card card-stats">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">change_circle</i>
+                        </div>
+                        <p class="card-category">Pending Opportunities</p>
+                        <h3 class="card-title">{{pendingOpportunities}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+  
+
+ 
+  
+  
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="card card-chart">
+                    <div class="card-header card-header">
+                        <div class="ct-chart" id="websiteViewsChart2"></div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Opportunities Secured by Salesperson</h4>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card card-chart">
+                  <div class="card-header card-header">
+                    <div class="ct-chart" id="completedTasksChart2"></div>
+                  </div>
+                  <div class="card-body">
+                    <h4 class="card-title">Contracts Prices</h4>
+                  </div>
+                </div>
+              </div>
+
+
+        </div>
+    </div>
+  </div>
+  

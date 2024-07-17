@@ -1,0 +1,184 @@
+<div class="main-content">
+    <div class="container-fluid">
+  
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="filter-container">
+            <mat-form-field appearance="fill">
+              <mat-label>Category</mat-label>
+              <mat-select [(ngModel)]="selectedCategory">
+                <mat-option value="">All</mat-option>
+                <mat-option value="contracts">Client</mat-option>
+                <mat-option value="requests">Lead</mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <mat-form-field appearance="fill">
+              <mat-label>Date Range</mat-label>
+              <mat-select [(ngModel)]="selectedDateRange">
+                <mat-option value="">All</mat-option>
+                <mat-option value="monthly">Per Month</mat-option>
+                <mat-option value="quarterly">Per Quarter</mat-option>
+                <mat-option value="yearly">Per Year</mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <mat-form-field appearance="fill">
+              <mat-label>Request Status</mat-label>
+              <mat-select [(ngModel)]="RequestStatus">
+                <mat-option value="">All</mat-option>
+                <mat-option value="progress">In progress</mat-option>
+                <mat-option value="escalated">Escalated</mat-option>
+                <mat-option value="resolved">Resolved</mat-option>
+                <mat-option value="suspended">Suspended</mat-option>
+                <mat-option value="open">Open</mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <mat-form-field appearance="fill">
+              <mat-label>User Status</mat-label>
+              <mat-select [(ngModel)]="UserStatus">
+                <mat-option value="">All</mat-option>
+                <mat-option value="active">Active</mat-option>
+                <mat-option value="inactive">Inactive</mat-option>
+                <mat-option value="qualified">Qualified</mat-option>
+                <mat-option value="disqualified">Disqualified</mat-option>
+                <mat-option value="attente">En attente</mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <button mat-raised-button (click)="applyFilters()">Apply Filters</button>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card card-stats">
+            <div class="card-header card-header-danger card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">book_online</i>
+              </div>
+              <p class="card-category">Total of Requests</p>
+              <h3 class="card-title">{{totalRequests}}</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card card-stats">
+            <div class="card-header card-header-danger card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">on_device_training</i>
+              </div>
+              <p class="card-category">Requests in progress</p>
+              <h3 class="card-title">{{progressRequests}}</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card card-stats">
+            <div class="card-header card-header-danger card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">rule_settings</i>
+              </div>
+              <p class="card-category">Escalated Requests</p>
+              <h3 class="card-title">{{escalatedRequests}}</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card card-stats">
+            <div class="card-header card-header-danger card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">mobile_friendly</i>
+              </div>
+              <p class="card-category">Resolved Requests</p>
+              <h3 class="card-title">{{resolvedRequests}}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row">
+
+            <div class="col-md-6">
+            <div class="card card-chart">
+              <div class="card-header card-header">
+                <div class="ct-chart" id="dailySalesChart"></div>
+              </div>
+              <div class="card-body">
+                <h4 class="card-title">Tickets handled by Agent</h4>
+              </div>
+            </div>
+          </div>
+          
+            <div class="col-md-6">
+              <div class="card card-chart">
+                <div class="card-header">
+                  <div class="ct-chart" id="websiteViewsChart8"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">Requests Distribution</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+  
+        
+          <div class="card">
+            <div class="card-header card-header-tabs card-header-primary">
+              <div class="nav-tabs-navigation">
+                <div class="nav-tabs-wrapper">
+                  <span class="nav-tabs-title">Tasks:</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="tab-content">
+                <div class="tab-pane active">
+                  <div class="add-task mb-3">
+                    <input [(ngModel)]="newTaskDescription" placeholder="New task description" class="form-control" />
+                    <button mat-raised-button color="primary" (click)="addTask()" class="btn btn-primary mt-2">Add Task</button>
+                  </div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Complete</th>
+                        <th>Description</th>
+                        <th class="text-right">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of taskSource">
+                        <td>
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input class="form-check-input" type="checkbox" value="" checked>
+                              <span class="form-check-sign">
+                                <span class="check"></span>
+                              </span>
+                            </label>
+                          </div>
+                        </td>
+                        <td>
+                          <input [(ngModel)]="item.description" [disabled]="item.id !== editingTaskId" class="form-control" />
+                        </td>
+                        <td class="td-actions text-right">
+                          <button mat-raised-button color="primary" (click)="editTask(item)" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-link btn-sm btn-just-icon">
+                            <i class="material-icons">edit</i>
+                          </button>
+                          <button mat-raised-button color="warn" (click)="deleteTask(item.id)" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-link btn-sm btn-just-icon">
+                            <i class="material-icons">close</i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+</div>
+  
