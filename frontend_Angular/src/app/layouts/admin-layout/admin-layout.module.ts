@@ -28,15 +28,21 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
-import { OpportunityListModule } from 'app/opportunity-list/opportunity-list.module';
 import { CsvExportService } from 'app/services/CsvExportService';
 import { AddActivityComponent } from 'app/add-activity/add-activity.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { LeadDetailsComponent } from 'app/lead-details/lead-details.component';
+
+import { OpportunityListModule } from 'app/opportunities/opportunity-list/opportunity-list.module';
+import { UserOpportunitiesComponent } from 'app/opportunities/user-opportunities/user-opportunities.component';
+import { OpportunityListService } from 'app/opportunities/opportunity-list/opportunity-list.service';
+import { UserOpportunityListService } from 'app/opportunities/user-opportunity-list/user-opportunity-list.service';
+
 import { ClientsDashboardComponent } from 'app/clients-dashboard/clients-dashboard.component';
 import { SupportDashboardComponent } from 'app/support-dashboard/support-dashboard.component';
 import { ContractsDashboardComponent } from 'app/contracts-dashboard/contracts-dashboard.component';
 import {MatTabsModule} from '@angular/material/tabs';
+
 
 @NgModule({
   imports: [
@@ -60,7 +66,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatCardModule,
     MatChipsModule,
     MatBadgeModule,
-    MatSnackBarModule, OpportunityListModule,
+    MatSnackBarModule, 
+    OpportunityListModule,
     MatSnackBarModule,
     MatDatepickerModule,
     MatTabsModule
@@ -76,13 +83,17 @@ import {MatTabsModule} from '@angular/material/tabs';
     UsersComponent,
     LeadDetailsComponent,
     OpportunitiesComponent,
+
+    AddActivityComponent,UserOpportunitiesComponent
+
     ClientsDashboardComponent,
     SupportDashboardComponent,
     ContractsDashboardComponent,
     AddActivityComponent,
     OpportunitiesComponent,
+
   ],
-  providers: [CsvExportService,NativeDateAdapter],
+  providers: [CsvExportService,NativeDateAdapter, OpportunityListService, UserOpportunityListService],
 
 })
 export class AdminLayoutModule {}

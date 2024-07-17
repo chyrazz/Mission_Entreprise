@@ -14,9 +14,13 @@ import { LeadDetailsComponent } from 'app/lead-details/lead-details.component';
 import { AddRequestComponent } from 'app/add-request/add-request.component';
 import { UpdateRequestComponent } from 'app/update-request/update-request.component';
 import { RateRequestComponent } from 'app/rate-request/rate-request.component';
+
+import { UserOpportunitiesComponent } from 'app/opportunities/user-opportunities/user-opportunities.component';
+
 import { ClientsDashboardComponent } from 'app/clients-dashboard/clients-dashboard.component';
 import { ContractsDashboardComponent } from 'app/contracts-dashboard/contracts-dashboard.component';
 import { SupportDashboardComponent } from 'app/support-dashboard/support-dashboard.component';
+
 
 
 
@@ -31,6 +35,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'contract',  component: ContractComponent },
     { path: 'users',  component: UsersComponent },  
     { path: 'opportunities',  component: OpportunitiesComponent },
+    { path: 'user-opportunities',  component: UserOpportunitiesComponent },
     { path: 'add-activity',  component: AddActivityComponent },
     { path: 'detail-lead',  component: LeadDetailsComponent },
     { path: 'detail-lead/:id', component: LeadDetailsComponent },

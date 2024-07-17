@@ -2,24 +2,22 @@
 import  moment from "moment";
 
 export class OpportunityDetails {
-   id: string;
   displayed: boolean = true; 
   formattedClosureDate: string; 
   formattedCreationDate: string; 
   
 
   constructor(
-  
+   public id : number,
     public description: string,
     public creationDate: string,
     public closeDate: string,
     public attachementList: Attachement[],
     public user: OpportunityUser,
-    public lead: OpportunityUser
-  ) {
-   // this.id = Guid.create().toString()
-    
- this.formatDates()
+    public lead: OpportunityUser, 
+    public status : OpportunityStatus
+  ) {    
+  this.formatDates()
   }
 
   formatDates(){
@@ -27,12 +25,16 @@ export class OpportunityDetails {
     this.formattedClosureDate = moment(new Date(this.closeDate)).locale('fr').format("Do. MMM YY")
   }
 
-  setId(id: string){
-    this.id = id
+
+  acceptOpportunity(){
+    this.status = OpportunityStatus.accepted
   }
+  declineOpportunity(){
+    this.status = OpportunityStatus.declined
+  }
+ 
 
-
-  updateValues(id : string, description: string, closureDate: string, user: OpportunityUser, lead: OpportunityUser){
+  updateValues(id : number, description: string, closureDate: string, user: OpportunityUser, lead: OpportunityUser){
     this.id = id; 
     this.closeDate = closureDate; 
     this.user = user; 
@@ -60,4 +62,20 @@ export interface Attachement {
 export interface OpportunityUser {
   id: number;
   name: string;
+}
+export enum OpportunityStatus{
+  pending = 'pending',
+  accepted = 'accepted',
+  declined = 'declined' 
+}
+
+export interface opprtunite{
+  id: number;
+  description: string;
+  dateCreation: string;
+  dateCloture: string;
+  attachements: Attachement[];
+  utilisateur: OpportunityUser;
+  lead: OpportunityUser;
+  statut: OpportunityStatus;
 }
