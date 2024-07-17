@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpEvent, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { User } from "app/model/User";
 import { Observable } from "rxjs";
@@ -10,7 +10,7 @@ import { Observable } from "rxjs";
 export class leadService{
     readonly API_URL = 'http://localhost:9000/CRM/Lead';
   
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient,private https: HttpClient) { }
   
     getAllLead(): Observable<any[]> {
       return this.httpClient.get<any[]>(`${this.API_URL}/Getlead`)
@@ -32,5 +32,10 @@ export class leadService{
       return this.httpClient.post(`${this.API_URL}/editlead`,user)
     }
 
+    pushFileToStorage(file: File): Observable<any> {
+      const formData: FormData = new FormData();
+      formData.append('file', file, file.name);
 
+      return this.httpClient.post(`${this.API_URL}/upload`, formData);
+    }
 }

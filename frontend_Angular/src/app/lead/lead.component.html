@@ -1,6 +1,16 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
+          <div class="col-md-12">
+            <div class="alert alert-success" *ngIf="show==true" >
+                <button mat-button type="button" class="close" data-dismiss="success" aria-label="Close" (click)="close()">
+                    <i class="material-icons">close</i>
+                </button>
+                <span>Lead uploaded !</span>
+            </div>
+            
+          </div>
+          
           <div class="input-container2">
           <button id="act2" mat-button routerLink="/detail-lead">+ Lead</button>
         
@@ -114,10 +124,8 @@
     <p>Select your file</p>
     
     <mat-dialog-content>
-      <input type="file" name="file" id="file">
+      <input type="file" (change)="selectFile($event)" accept=".csv"  name="file" id="file">
        
     </mat-dialog-content>
-      <mat-dialog-actions>
-        <button mat-button >ok</button>
-      </mat-dialog-actions>
+  
   </ng-template>

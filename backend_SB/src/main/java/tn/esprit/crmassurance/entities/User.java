@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +33,15 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy ="userCreateur" )
     private List<User> usercrees;
+
+    public User(String name, String lastname, String adr, String email, String phoneNumber1, String phoneNumber2) {
+        this.name = name;
+        this.lastname = lastname;
+        this.adr = adr;
+        this.email = email;
+        this.phoneNumber1 = phoneNumber1;
+        this.phoneNumber2 = phoneNumber2;
+    }
 
     @ManyToOne
     private User userCreateur;
